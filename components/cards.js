@@ -33,8 +33,8 @@ function Cards({posts}) {
 
 export default Cards;
 
-
+// making the process bar 
 // implementing the search component
 // making the page for it
 // making the navbar functional tailwind headless ui or the customize function 
- 
+
