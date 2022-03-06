@@ -1,10 +1,11 @@
 import React from 'react'
-import Navbar from '../components/navbar'
+import Navbar from '../../components/navbar'
 import {getSession} from 'next-auth/react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import Search from '../components/Search'
-import Cards from '../components/cards'
+import Search from '../../components/Search'
+import Cards from '../../components/cards'
+
 
 function Main({posts}) {
 
@@ -23,7 +24,7 @@ function Main({posts}) {
           return (
             <div>
             <Navbar posts={posts.genres}/>
-            <Search/>
+            <Search />
             <Cards posts={posts.results}/>
           </div>
           )
@@ -34,7 +35,7 @@ function Main({posts}) {
         }     
         }
         
-        export default Main
+        export default Main;
         
 
 
@@ -51,4 +52,4 @@ function Main({posts}) {
         }
 
 
-     
+      

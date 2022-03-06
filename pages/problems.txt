@@ -2,7 +2,7 @@
 
     https://api.themoviedb.org/3/movie/550?api_key=646bf891818e603b2191861151e399fe
 
-    https://api.themoviedb.org/3/search/multi?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
+    https://api.themoviedb.org/3/search/multi?api_key=<<api_key>>&language=en-US&query=&page=1&include_adult=false
 
     https://api.themoviedb.org/3/trending/all/day?api_key=<<api_key>
 
