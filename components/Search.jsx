@@ -20,8 +20,9 @@ import {submitValue} from '../redux/submitSlice'
     // submit handler function 
       const submitHandler = e => {
         e.preventDefault();
+        // givin the value to the redux store 
         dispatch(submitValue(value))
-        router.push(`/main/search`)
+        router.push(`/main/search/${value}`)
         // setValue('')
       }
 

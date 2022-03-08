@@ -9,3 +9,24 @@
         get movies popular 
     https://api.themoviedb.org/3/movie/popular?api_key=<<api_key>>&language=en-US&page=1
     
+
+    adding the spinners to the dataFetch.jsx
+    to the main.js
+
+
+    // addin the ''
+    //adding the toggle button 
+        // checking the page with next router
+        //making the page dynamic 
+    // adding the spinner in here also 
+    // also adding the the search component in here so to search again 
+    // adding the navbar 
+    // adding the google provider 
+    // two provider is enough 
+    // the navbar part is very important as it will be used very often
+    //the prooblem with the serverside authentication in yet to be done 
+    
+      
+
+   
+     

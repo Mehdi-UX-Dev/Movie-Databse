@@ -13,7 +13,7 @@ function Index() {
     const router = useRouter();  
      const [loading, setLoading]=useState(true);
      const {data : session } = useSession()
-     console.log(session);
+
      useEffect(() => {
           // authenticating the server side 
           if(session){

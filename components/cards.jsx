@@ -1,17 +1,21 @@
 import Image from "next/image";
 import React from "react";
-function Cards({posts}) {
+import { useRouter } from "next/router";
+function Cards({posts,text,value}) {
+ 
   return (
     <div className=" ">
-        <h1 className="text-3xl font-bold font-mono mt-3 mb-1 ml-3">Trending</h1>
-          
+      {/* USE STATE TO AND NEXT ROUTER TO CHECK FOR THE PAGES  */}
+      
+        <h1 className="text-3xl font-bold font-mono mt-3 mb-1 ml-3">{text}<span className="uppercase">{`'${value}'`}</span></h1>
+          <p></p>
             {/* cards section here */}
-            <div className="grid grid-cols-1 sm:flex sm:flex-wrap sm:justify-center space-y-3 space-x-2  " >
+            <div className="grid grid-cols-1 sm:flex sm:flex-wrap sm:justify-center space-y-3 space-x-2 mx-2 " >
              
               {/* mapping  */}
-                        {posts.map(e => {
+              {posts.map(e => {
                           return (
-                           <div key={e.id} className="sm:w-72 hover:scale-105 overflow-hidden rounded-lg shadow-lg bg-gray-200 ">
+                           <div key={e.id} className="sm:w-72  md:hover:scale-105  overflow-hidden rounded-lg shadow-lg bg-gray-200 ">
                               <Image src={`https://image.tmdb.org/t/p/w500/${e.poster_path}`} alt='pic' objectFit="cover"  height={150} width={150} layout="responsive" className="rounded-t-md"/>
                             <p className="font-bold pl-3 pb-1 text-xl">{e.name || e.title}</p>
                             {/* release date  */}
