@@ -1,24 +1,29 @@
-import Image from "next/image";
-import React, { useState } from "react";
+import Image from "next/image"
 import vercel from '../public/vercel.svg'
-import spinner from '../public/spinner.svg'
+import { useEffect, useState } from "react"
+import MyRadioGroup from "../utils/MyRadioGroup"
+  
+    
+    function SearchCard({posts,hidingTheValue,text,value}) {
+            // storage for the data for mapping and filtering 
+            const [storage, setStorage] = useState(posts)
 
-function Cards({posts,text,hidingTheValue,value,}) {
-    if( posts === undefined) return( <div className="flex justify-center items-center h-screen"><Image src={spinner} className="" alt="spinner"/></div>)
-    return (
-    <div>
-      
-        <h1 className="text-3xl font-bold font-mono mt-3 mb-1 ml-3">{text}<span hidden={hidingTheValue} className="uppercase `">{`'${value}'`}</span></h1>
-          <p></p>
+
+      return (
+          
+        <div>
+        <h1 className="text-xl font-bold font-mono mt-3 mb-1 ml-3">{text}<span hidden={hidingTheValue} className="uppercase `">{`'${value}'`}</span></h1>
+            {/* buttons for filtering  */}
+            <MyRadioGroup/>
             {/* cards section here */}
             <div className="grid grid-cols-1 sm:flex sm:flex-wrap sm:justify-center space-y-3 space-x-2 mx-2 " >
               {/* mapping  */}
-              { posts.results.map(e => {
+              { storage.map(e => {
                 // checking for the error handling in the images // if image not fetched then vercel svg will be shown 
                 let pic = e.poster_path !== undefined && e.poster_path !== null ? `https://image.tmdb.org/t/p/w500/${e.poster_path}` : vercel
                           return (
                            <div key={e.id} className="sm:w-72  md:hover:scale-105  overflow-hidden rounded-lg shadow-lg bg-gray-200 ">
-                              <Image src={pic} alt='pic' objectFit="cover"  height={150} width={150} layout="responsive" className="rounded-t-md"/>
+                              <Image   src={pic} alt='pic' objectFit="cover"  height={150} width={150} layout="responsive" className="rounded-t-md"/>
                             <p className="font-bold pl-3 pb-1 text-xl">{e.name || e.title}</p>
                             {/* release date  */}
                             <strong className="pr-1 pl-2 font-medium">Date:</strong>
@@ -34,13 +39,7 @@ function Cards({posts,text,hidingTheValue,value,}) {
                         
                         </div>
     </div>
-  )  
-
-}
-
-export default Cards;
-
-
-// making the navbar functional tailwind headless ui or the customize function 
-// making the authentication clear from email instead adding google provider 
-// making the progress and toggle button for the trending part 
+      )
+    }
+    
+    export default SearchCard

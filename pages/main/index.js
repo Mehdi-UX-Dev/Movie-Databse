@@ -20,13 +20,14 @@ function Main({posts}) {
     }
     fetch()
 }, [])
+   
 
         if(data){
           return (
             <div>
             <Navbar posts={posts.genres}/>
             <Search />
-            <Cards posts={posts.results}  text={'Trending'}/>
+            <Cards posts={posts}  text={'Trending'} hidingTheValue={true} />
           </div>
           )
         } else {

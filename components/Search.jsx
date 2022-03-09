@@ -4,26 +4,25 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from "next/router";
 import {submitValue} from '../redux/submitSlice'       
   function Search({input}) {
-      // const inputValue = useSelector(state => state.submit.input)
-
+  
+   
 
       // creating the selector hook 
       const dispatch = useDispatch();
 
           // defining react router 
           const router =  useRouter()
-
-            
+    
     // defining the value state 
        const [value , setValue] = useState('')
-
     // submit handler function 
       const submitHandler = e => {
         e.preventDefault();
         // givin the value to the redux store 
         dispatch(submitValue(value))
         router.push(`/main/search/${value}`)
-        // setValue('')
+        localStorage.setItem('inputValue', value.toString())
+        setValue('')
       }
 
       // handleChange function 

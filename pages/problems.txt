@@ -25,7 +25,13 @@
     // two provider is enough 
     // the navbar part is very important as it will be used very often
     //the prooblem with the serverside authentication in yet to be done 
-    
+    // error handling is not completely done 
+
+
+
+  "@tailwindcss/forms": "^0.4.0",
+
+
       
 
    

@@ -20,7 +20,7 @@ function Index() {
             router.push('/main')
             setLoading(false)
           }
-        },[loading]) 
+        },[loading,router,session]) 
         
         if(loading){
        return  <div className=" bg-[url('../public/Batman.jpg')] bg-cover bg-center  grid content-center justify-items-center md:grid-cols-3 h-screen  md:h-screen w-auto  ">
