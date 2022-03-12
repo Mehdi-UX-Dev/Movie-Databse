@@ -18,7 +18,7 @@ function Cards({posts,text,hidingTheValue,value,}) {
                 let pic = e.poster_path !== undefined && e.poster_path !== null ? `https://image.tmdb.org/t/p/w500/${e.poster_path}` : vercel
                           return (
                            <div key={e.id} className="sm:w-72  md:hover:scale-105  overflow-hidden rounded-lg shadow-lg bg-gray-200 ">
-                              <Image src={pic} alt='pic' objectFit="cover"  height={150} width={150} layout="responsive" className="rounded-t-md"/>
+                              <Image  alt='pic' objectFit="cover"  height={150} width={150} layout="responsive" className="rounded-t-md" blurDataURL={pic} src={pic} placeholder="blur"/>
                             <p className="font-bold pl-3 pb-1 text-xl">{e.name || e.title}</p>
                             {/* release date  */}
                             <strong className="pr-1 pl-2 font-medium">Date:</strong>

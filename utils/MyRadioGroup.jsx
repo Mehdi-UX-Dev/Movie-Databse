@@ -1,52 +1,38 @@
 import { useState } from 'react'
-import { RadioGroup } from '@headlessui/react'
 
-function MyRadioGroup() {
-  let [plan, setPlan] = useState('startup')
 
-  return (
-   
-    <RadioGroup value={plan} onChange={setPlan} className="ml-3" >
-      <RadioGroup.Label>Plan</RadioGroup.Label>
-      <RadioGroup.Option value="startup" className=''>
-        {/*
-          Use both `active` and `checked` to differentiate between the
-          active and checked states.
-        */}
-        {({ active, checked }) => (
-         console.log(plan),
-          <div className='bg-red-500'>
-            <span
-              className={`
-                ${checked ? 'bg-indigo-600 ' : ''}
-                ${active ? 'ring-2 ring-indigo-500' : ''}
-              w-4 h-4 rounded-full `}
-            />
-            Startup
-          </div>
-          
-        )
+function MyRadioGroup({filter}) {
+      // logic 
+      // 1 using a state to check wether a button is checked or not by comparing the value to the state 
+      const [check, setCheck] =  useState('multi')
+      
+      // 2 returning the desired value to the parent component for the required filtering 
+      const handleChange = e => {
+        // assigning the update value to the state storage 
+          setCheck(e.target.value)
+        //  passing it down the tree to the searchCard component
+           filter(e.target.value)
         }
-      </RadioGroup.Option>
-      {/* ... */}
-      <RadioGroup.Option value="demo">
-        {/*
-          Use both `active` and `checked` to differentiate between the
-          active and checked states.
-        */}
-        {({ active, checked }) => (
-        
-          <>
-            <span
-              className={'w-4 h-4 font-bold rounded-full bg-gray-600'}
-            />
-            demo
-          </>
-          
-        )
-        }
-      </RadioGroup.Option>
-    </RadioGroup>
+
+
+  return(
+    <div className='border-2 rounded-lg mx-2 w-full flex-col border-gray-400 border-t-0  '>
+      {/* header part  */}
+      <div className='text-center border-2 font-bold font-serif text-white bg-blue-500 rounded-lg '>Select:</div>
+      {/* buttons part  */}
+      <div className='pl-1'>
+      <input type="radio" name="select" id="movie" className='rounded-full text-pink-500 focus:ring-pink-500' value='movie' onChange={handleChange} checked={check === 'movie'}/>
+      <label htmlFor="movie" className='pl-1'>Movie</label>
+      </div>
+      <div className='pl-1'>
+      <input type="radio" name="select" id="tv" className='rounded-full' value='tv' onChange={handleChange} checked={check === 'tv'}/>
+      <label htmlFor="movie" className='pl-1'>Tv Shows</label>
+      </div>
+      <div className='pl-1 '>
+      <input type="radio" name="select" id="movie" className='rounded-full ' value='multi' onChange={handleChange} checked={check === 'multi'} />
+      <label htmlFor="movie"  className='pl-1'>Movie & Tv shows</label>
+      </div>
+    </div>
   )
 }
 

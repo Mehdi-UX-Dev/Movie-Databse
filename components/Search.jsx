@@ -5,8 +5,6 @@ import { useRouter } from "next/router";
 import {submitValue} from '../redux/submitSlice'       
   function Search({input}) {
   
-   
-
       // creating the selector hook 
       const dispatch = useDispatch();
 

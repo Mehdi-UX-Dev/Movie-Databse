@@ -30,7 +30,7 @@ function DataFetch() {
     if( data === undefined) return( <div className="flex justify-center items-center h-screen"><Image src={spinner} className="" alt="spinner"/></div>)
   return (
           //making the mobile first toggle button and design then going for the larger screens 
-        <div >
+        <div className='' >
             <SearchCard posts={data.user.results} hidingTheValue={false} text={'list of Movies and Tv shows for'} value={router.query.value} /> 
         </div>
   )
