@@ -16,7 +16,7 @@ function MyRadioGroup({filter}) {
 
 
   return(
-    <div className='border-2 rounded-lg mx-2 w-full flex-col border-gray-400 border-t-0  '>
+    <div className='border-2 rounded-lg mx-2 w-full  flex-col border-gray-400 border-t-0  '>
       {/* header part  */}
       <div className='text-center border-2 font-bold font-serif text-white bg-blue-500 rounded-lg '>Select:</div>
       {/* buttons part  */}

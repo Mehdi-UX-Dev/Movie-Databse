@@ -1,40 +1,44 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
+import { useEffect, useState } from 'react';
 import SearchCard from '../components/searchCard'; 
 import spinner from '../public/spinner.svg'
+import useFetch from './useFetch';
 
 
 function DataFetch() {
-    // taking the the inputValue from the locatStorage due to the preistency 
-    const checkout = typeof window !== 'undefined' ? localStorage.getItem('inputValue') : null
 
-    // fetching the data from the router query params 
-      const router = useRouter()
+        // fetching the data from the router query params 
+      const router = useRouter();
+      const routerValue = router.query.value;
      
-    const {data, error } = useSWR(`movie and tv shows`,async () =>  {
-      // using the anonymous function 
-      // fetching the data 
-      const reponse = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${process.env.NEXT_PUBLIC_APIV3}&language=en-US&query=${checkout}&page=1&include_adult=false`)
-      // converting the json 
-      const data = await reponse.json();
+       
+    // taking the the inputValue from the locatStorage due to the preistency 
+    let checkout = typeof window !== 'undefined' ? localStorage.getItem('inputValue').trim() :  ''
     
-    return {
-      user: data,
-      isLoading: !error && !data,
-      isError: error
-    }
-    }) 
+
+    // swrHook returning the value 
+    const {user} = useFetch('Movie and Tv Shows', checkout);
+
+    // movie stroage 
+    const [movieStroage, setMovieStorage] = useState([])  
+    
+    // useEffect Hook for validating the user 
+    useEffect(() => {
+        if(user !== undefined) setMovieStorage(user.results)
+    },[user])
+   
   // error handling for cientside 
-    if( data === undefined) return( <div className="flex justify-center items-center h-screen"><Image src={spinner} className="" alt="spinner"/></div>)
+    if( user === undefined ) return( <div className="flex justify-center items-center h-screen"><Image src={spinner} className="" alt="spinner"/></div>)
   return (
           //making the mobile first toggle button and design then going for the larger screens 
         <div className='' >
-            <SearchCard posts={data.user.results} hidingTheValue={false} text={'list of Movies and Tv shows for'} value={router.query.value} /> 
+            <SearchCard posts={movieStroage} hidingTheValue={false} text={'list of Movies and Tv shows for'} value={routerValue}/> 
         </div>
   )
 }
 
-export default DataFetch
+export default DataFetch;
+
 

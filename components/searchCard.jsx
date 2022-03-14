@@ -6,7 +6,13 @@ import MyRadioGroup from "../utils/MyRadioGroup"
     
     function SearchCard({posts,hidingTheValue,text,value}) {
             // storage for the data for mapping and filtering 
-            const [storage, setStorage] = useState(posts)
+            const [storage, setStorage] = useState([])
+            // useEffect Hook 
+            useEffect(() => {
+              // implementing the logic cuz the posts come to teh searchCard empty in the first call 
+              // this implementation is not the most logical way of making the system work 
+              if(storage.length == 0) setStorage(posts)
+            },[storage,posts])
           // the storage must be updated according to the radio button 
           const updateStorage = selection => {
          const filteredData = posts.filter(select => {
@@ -17,7 +23,6 @@ import MyRadioGroup from "../utils/MyRadioGroup"
                  default : return select;
                }
               })
-
                 // setting up the new data 
                 setStorage(filteredData)
             }
@@ -28,8 +33,8 @@ import MyRadioGroup from "../utils/MyRadioGroup"
         <div className="grid grid-cols-3 mt-3 ">
           
             {/* radio buttons and header section */}
-            <div className="relative">
-            <div className="col-span-1 fixed left-0 top-10 w-1/3 ">
+            <div className="relative ">
+            <div className="col-span-1 fixed left-0 top-10 w-1/3 md:w-3/12 ">
             {/* header element */}
            <h1 className="text-xl font-bold font-mono mt-3 mb-1 ml-3">{text}<span hidden={hidingTheValue} className="uppercase font-mono font-semibold `">{`'${value}'`}</span></h1>
             {/* buttons for filtering  */}
@@ -38,7 +43,7 @@ import MyRadioGroup from "../utils/MyRadioGroup"
             </div>
 
             {/* cards section here */}
-            <div className="col-span-2 w-11/12 pl-4 space-y-4 justify-self-center " >
+            <div className="col-span-2 w-11/12 pl-4 space-y-4 justify-self-center md:flex md:flex-wrap md:space-x-2 " >
               {/* mapping  */}
               { storage.map(e => {
                 // checking for the error handling in the images // if image not fetched then vercel svg will be shown 
