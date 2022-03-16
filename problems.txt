@@ -1,0 +1,11 @@
+
+    // adding the navbar 
+    // the navbar part is very important as it will be used very often
+     // adding the spinners to the to the main.js
+    // adding the google provider 
+    // two provider is enough 
+    // also adding the the search component in dataFetch so to search again 
+    //the prooblem with the serverside authentication in yet to be done 
+    // error handling is not completely done like network error in the main page in the build time 
+    // adding the what's popular on tv and theatre although the toggle will take time to design 
+    // array of pictures for the rendering 

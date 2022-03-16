@@ -2,9 +2,9 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import SearchCard from '../components/searchCard'; 
+import SearchCard from './searchCard'; 
 import spinner from '../public/spinner.svg'
-import useFetch from './useFetch';
+import useFetch from '../utils/useFetch';
 
 
 function DataFetch() {
@@ -15,7 +15,7 @@ function DataFetch() {
      
        
     // taking the the inputValue from the locatStorage due to the preistency 
-    let checkout = typeof window !== 'undefined' ? localStorage.getItem('inputValue').trim() :  ''
+    let checkout = typeof window !== 'undefined' ? localStorage.getItem('inputValue').trim() :''
     
 
     // swrHook returning the value 

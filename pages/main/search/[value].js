@@ -1,7 +1,6 @@
 
 
-import { useRouter } from 'next/router';
-import DataFetch from '../../../utils/DataFetch';
+import DataFetch from '../../../components/DataFetch';
 
 function Search() {
         
@@ -10,8 +9,6 @@ return (
         <DataFetch />
     </div>
   )
-
-
 }
 
 

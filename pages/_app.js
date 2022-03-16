@@ -19,3 +19,5 @@ export default function App({
     </Provider>
   )
 }
+
+// checking for the potential bugs in the tailwind and next js

@@ -1,7 +1,7 @@
 import Image from "next/image"
 import vercel from '../public/vercel.svg'
 import { useEffect, useState } from "react"
-import MyRadioGroup from "../utils/MyRadioGroup"
+import MyRadioGroup from "./MyRadioGroup"
   
     
     function SearchCard({posts,hidingTheValue,text,value}) {
