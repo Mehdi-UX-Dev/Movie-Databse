@@ -9,11 +9,11 @@ function Cards({posts,text,hidingTheValue,value,}) {
     <div>
       
         <h1 className="text-3xl font-bold font-mono mt-3 mb-1 ml-3">{text}<span hidden={hidingTheValue} className="uppercase `">{`'${value}'`}</span></h1>
-          <p></p>
+      
             {/* cards section here */}
             <div className="grid grid-cols-1 sm:flex sm:flex-wrap sm:justify-center space-y-3 space-x-2 mx-2 " >
               {/* mapping  */}
-              { posts.results.map(e => {
+              {posts.results.map(e => {
                 // checking for the error handling in the images // if image not fetched then vercel svg will be shown 
                 let pic = e.poster_path !== undefined && e.poster_path !== null ? `https://image.tmdb.org/t/p/w500/${e.poster_path}` : vercel
                           return (

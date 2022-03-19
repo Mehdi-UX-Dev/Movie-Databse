@@ -1,6 +1,8 @@
 
-    // adding the navbar 
-    // the navbar part is very important as it will be used very often
+        // tv show tab and making the mobile design for it 
+        // adding the every movie and tv specific detail to the app 
+        // adding the watch providers to the page 
+        // adding the load more button
      // adding the spinners to the to the main.js
     // adding the google provider 
     // two provider is enough 
@@ -9,3 +11,6 @@
     // error handling is not completely done like network error in the main page in the build time 
     // adding the what's popular on tv and theatre although the toggle will take time to design 
     // array of pictures for the rendering 
+    // rewriting the swr hook 
+
+    

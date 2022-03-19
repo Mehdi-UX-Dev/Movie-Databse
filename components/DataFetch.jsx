@@ -6,6 +6,7 @@ import SearchCard from './searchCard';
 import spinner from '../public/spinner.svg'
 import useFetch from '../utils/useFetch';
 
+// router query param is not finished !!!!!!!!!!
 
 function DataFetch() {
 
@@ -19,7 +20,9 @@ function DataFetch() {
     
 
     // swrHook returning the value 
-    const {user} = useFetch('Movie and Tv Shows', checkout);
+    const {user} = useFetch('Movie and Tv Shows',
+    `https://api.themoviedb.org/3/search/multi?api_key=${process.env.NEXT_PUBLIC_APIV3}&language=en-US&query=${checkout}&page=1&include_adult=false`
+    );
 
     // movie stroage 
     const [movieStroage, setMovieStorage] = useState([])  

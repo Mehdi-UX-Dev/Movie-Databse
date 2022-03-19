@@ -52,7 +52,7 @@ import {submitValue} from '../redux/submitSlice'
     
     export default Search;
 
-
+  
 
     
         
