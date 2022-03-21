@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import Tmdb from '../public/Tmdb_short.svg'
-import LinkMaker from '../utils/LinkMaker'
+import LinkMaker from './LinkMaker'
 
 function Navbar() {
     

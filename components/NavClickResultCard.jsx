@@ -1,9 +1,10 @@
 
           // for showing the results of the navbar buttons
           import useFetch from "../utils/useFetch";
-import { Form } from "./Form";
-          import Navbar from "./navbar";
-          import NavCard from "./NavCard";
+          import { Form } from "./Form";
+          import Navbar from "../utils/navbar";
+          import NavCard from "../utils/CardMaker";
+import WatchProvider from "./WatchProvider";
 
         function NavClickResultCard({category,value,text}) {
               // swr hook 
@@ -15,17 +16,20 @@ import { Form } from "./Form";
               <Navbar/>
 
               {/* section  */}
-              <div className="grid grid-cols-3 mt-4">
+              <div className="grid grid-cols-3 mt-4 ">
             {/* search section and provider section  */}
-                <div className="col-span-1 text-center">
+                <div className="col-span-1 text-center relative">
                   <h1 className=" uppercase text-2xl font-semibold ">{value} {text}</h1>
+                  <div className="fixed left-0 w-1/3">
                   {/* component which contains both search and provider data  */}
                     <Form/>
+                    <WatchProvider/>
+                    </div>
                   </div>
             {/* cards section showing the results in the card */}
-               <div className="flex flex-wrap justify-center col-span-2 space-x-3 space-y-4 pt-12">
+               <div className="flex flex-wrap justify-center col-span-2 space-x-3 space-y-4 pt-12 pr-3">
               {user.results.map(data => (
-                <NavCard key={data.id} {...data}/>
+                <NavCard  key={data.id} {...data}/>
               )
               )}
               </div>

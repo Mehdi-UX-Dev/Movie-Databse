@@ -1,9 +1,10 @@
 
 import { useState } from "react";
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useRouter } from "next/router";
-import {submitValue} from '../redux/submitSlice'       
-  function Search({input}) {
+
+
+function Search({input}) {
   
       // creating the selector hook 
       const dispatch = useDispatch();
@@ -16,10 +17,7 @@ import {submitValue} from '../redux/submitSlice'
     // submit handler function 
       const submitHandler = e => {
         e.preventDefault();
-        // givin the value to the redux store 
-        dispatch(submitValue(value))
         router.push(`/main/search/${value}`)
-        localStorage.setItem('inputValue', value.toString())
         setValue('')
       }
 

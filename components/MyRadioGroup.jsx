@@ -16,9 +16,9 @@ function MyRadioGroup({filter}) {
 
 
   return(
-    <div className='border-2 rounded-lg mx-2 w-full  flex-col border-gray-400 border-t-0  '>
+    <div className='border-2 rounded-lg mx-2 w-full  flex-col border-darkBlue '>
       {/* header part  */}
-      <div className='text-center border-2 font-bold font-serif text-white bg-blue-500 rounded-lg '>Select:</div>
+      <div className='text-center border-2 font-bold font-serif text-white bg-gradient-to-r from-darkBlue to-lightBlue rounded-lg '>Select:</div>
       {/* buttons part  */}
       <div className='pl-1'>
       <input type="radio" name="select" id="movie" className='rounded-full text-pink-500 focus:ring-pink-500' value='movie' onChange={handleChange} checked={check === 'movie'}/>

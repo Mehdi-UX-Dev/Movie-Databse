@@ -11,7 +11,7 @@ import NavClickResultCard from "../../../components/NavClickResultCard";
        
         if(router.query.type == undefined) return <div className="flex justify-center items-center h-screen"><Image src={spinner} className="" alt="spinner"/></div>
           return (
-              <NavClickResultCard category={'movie'} value={router.query.type}/>
+              <NavClickResultCard text={"Movies"} category={'movie'} value={router.query.type}/>
               )
                                                           }
             
