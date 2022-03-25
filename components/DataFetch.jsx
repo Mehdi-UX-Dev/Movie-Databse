@@ -1,10 +1,9 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import SearchCard from './searchCard'; 
 import spinner from '../public/spinner.svg'
-import useFetch from '../utils/useFetch';
+
 
 // router query param is not finished !!!!!!!!!!
 

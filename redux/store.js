@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import submitSlice from './submitSlice'
+import countrySlice from './countrySlice'
 
 export const store = configureStore({
   reducer: {
-      submit: submitSlice
+      country: countrySlice
   },
 })

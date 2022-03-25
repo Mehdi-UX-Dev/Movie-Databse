@@ -4,7 +4,7 @@
           import { Form } from "./Form";
           import Navbar from "../utils/navbar";
           import NavCard from "../utils/CardMaker";
-import WatchProvider from "./WatchProvider";
+          import WatchProvider from "./WatchProvider";
 
         function NavClickResultCard({category,value,text}) {
               // swr hook 

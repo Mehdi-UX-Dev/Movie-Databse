@@ -1,22 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  input: '',
+   value : 'AE',
 }
 
-export const submitSlice = createSlice({
-  name: 'submit',
+export const countrySlice = createSlice({
+  name: 'country',
   initialState,
   reducers: {
-    submitValue: (state, action) => {
+    country: (state, action) => {
     
         // write the logic here to submit data
-        state.input = action.payload
+        state.value = action.payload
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { submitValue } = submitSlice.actions
+export const { country } = countrySlice.actions
 
-export default submitSlice.reducer
+export default countrySlice.reducer

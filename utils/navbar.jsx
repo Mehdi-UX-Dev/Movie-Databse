@@ -25,9 +25,9 @@ function Navbar() {
         
           {/* dropdown menu */}
           {/* movie's section */}
-       <div className='realtive mt-2 mr-3' onMouseOver={() => handleHover('movie')} onMouseOut={() => handleHover('movie')}>
+       <div className='realtive mt-2 mr-3 z-10' onMouseOver={() => handleHover('movie')} onMouseOut={() => handleHover('movie')}>
             {/* button */}
-        <div className=''>
+        <div className=' '>
             <button className='text-white font-bold'>Tv Shows</button>
         </div>
           {/* links  */}
@@ -39,7 +39,7 @@ function Navbar() {
         </div>
               
           {/* tv's section */}
-          <div className='realtive mt-2 ml-5 divide-y-2' onMouseOver={() => handleHover('tvshow')} onMouseOut={() => handleHover('tvshow')}>
+          <div className='realtive mt-2 ml-5 divide-y-2 z-10' onMouseOver={() => handleHover('tvshow')} onMouseOut={() => handleHover('tvshow')}>
             {/* button */}
         <div>
             <button className='text-white font-bold'>Movies</button>

@@ -1,6 +1,6 @@
 
         
-   ***     // adding the watch providers to the page 
+     //! adding the watch providers to the page 
 
         // adding the every movie and tv specific detail to the app 
         // adding the load more button

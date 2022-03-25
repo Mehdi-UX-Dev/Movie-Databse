@@ -3,7 +3,7 @@ import MyRadioGroup from "./MyRadioGroup"
 import Navbar from "../utils/navbar"
 import NavCard from "../utils/CardMaker"
   import useFetch from '../utils/useFetch'
-import { useRouter } from "next/router"
+
     
     function SearchCard({hidingTheValue,text,value}) {
                 // swrHook returning the value 

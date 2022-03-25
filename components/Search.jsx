@@ -1,13 +1,10 @@
 
 import { useState } from "react";
-import { useDispatch } from 'react-redux'
 import { useRouter } from "next/router";
 
 
-function Search({input}) {
+function Search() {
   
-      // creating the selector hook 
-      const dispatch = useDispatch();
 
           // defining react router 
           const router =  useRouter()
