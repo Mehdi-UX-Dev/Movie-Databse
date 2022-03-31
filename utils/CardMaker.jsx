@@ -3,6 +3,7 @@ import vercel from '../public/vercel.svg'
 
 
 function CardMaker({...data}) {
+
 // checking for the error handling in the images // if image not fetched then vercel svg will be shown 
 let pic = data.poster_path !== undefined && data.poster_path !== null ? `https://image.tmdb.org/t/p/w500/${data.poster_path}` : vercel
 return (

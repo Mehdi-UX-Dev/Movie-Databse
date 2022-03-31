@@ -1,10 +1,8 @@
         
        import useSWR from 'swr';
 
-    function useFetch(name, url)  {
-       
-        
-    
+    function useFetch(name, url, refresh)  {
+   
         const {data, error } = useSWR(name,async () =>  {
             // using the anonymous function 
             // fetching the data 
@@ -18,6 +16,8 @@
             isError: error
         }
         },
+        // * refresh interval in the swr hook for revalidatin the data if required 
+            refresh
         );
         if (data !== undefined) return data; 
         return {}

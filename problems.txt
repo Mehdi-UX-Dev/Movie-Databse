@@ -1,20 +1,13 @@
 
-        
-     //! adding the watch providers to the page 
-
-        // adding the every movie and tv specific detail to the app 
-        // adding the load more button
-     // adding the spinners to the to the main.js
-    // adding the google provider 
-    // two provider is enough 
-    // also adding the the search component in dataFetch so to search again 
-    //the prooblem with the serverside authentication in yet to be done 
-    // error handling is not completely done like network error in the main page in the build time 
-    // adding the what's popular on tv and theatre although the toggle will take time to design 
-    // array of pictures for the rendering 
-    // rewriting the swr hook 
-        // making the names of the components more clearer 
-
-    
-https://api.themoviedb.org/3/watch/providers/regions?api_key=<<api_key>>&language=en-US
-https://api.themoviedb.org/3/watch/providers/movie?api_key=<<api_key>>&language=en-US
+   
+        1   adding the load more button
+        2   adding the functionality to the mediums and makig the pop up modals for the each streaming service 
+        3   adding the every movie and tv specific detail to the app 
+        3.1 adding the signout function and avatar  
+        4   adding the google provider 
+        5   the prooblem with the serverside authentication in yet to be done 
+        6    error handling is not completely done like network error in the main page in the build time solution is to make custom 404 page 
+        7    adding the what's popular on tv and theatre although the toggle will take time to design 
+        8    array of pictures for the rendering 
+        9   rewriting the swr hook 
+        10   making the names of the components more clearer 

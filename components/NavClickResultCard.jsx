@@ -5,12 +5,18 @@
           import Navbar from "../utils/navbar";
           import NavCard from "../utils/CardMaker";
           import WatchProvider from "./WatchProvider";
+          import { useState } from "react";
 
         function NavClickResultCard({category,value,text}) {
-              // swr hook 
-          const {user} = useFetch('Movie Nav',`https://api.themoviedb.org/3/${category}/${value}?api_key=${process.env.NEXT_PUBLIC_APIV3}&language=en-US&page=1` )
-         
-           if(user == undefined) return <div className="text-5xl font-bold text-center grid items-center h-screen">...</div>      
+          //? adding the state for the page and setPageCount for the api 
+              const [page,setPageCount] = useState(1)
+          // swr hook 
+           const {user} = useFetch('Movie Nav',`https://api.themoviedb.org/3/${category}/${value}?api_key=${process.env.NEXT_PUBLIC_APIV3}&language=en-US&page=${page}` )
+
+            //Todo storing the user  data to the array due to load more function and whenever any new data arrives it must be stored into that particular function 
+            
+
+          if(user == undefined) return <div className="text-5xl font-bold text-center grid items-center h-screen">...</div>      
           return (<div>
             {/* navbar section */}
               <Navbar/>
@@ -23,7 +29,7 @@
                   <div className="fixed left-0 w-1/3">
                   {/* component which contains both search and provider data  */}
                     <Form/>
-                    <WatchProvider/>
+                    <WatchProvider param={text}/>
                     </div>
                   </div>
             {/* cards section showing the results in the card */}
