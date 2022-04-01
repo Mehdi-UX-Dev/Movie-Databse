@@ -1,12 +1,12 @@
-import useFetch from "../utils/useFetch"
 import WatchProviderRegionMaker from "./regionsMaker";
   import Image from 'next/image'
   import loading_dot from '../public/loading_dot.svg'
 import WatchProviderMedium from "./watchProviderMedium";
+import useSWR from "swr";
         
         const WatchProvider = ({param}) => {
          
-      const {user : data} = useFetch('providers', `https://api.themoviedb.org/3/watch/providers/regions?api_key=${process.env.NEXT_PUBLIC_APIV3}&language=en-US`)
+      const {data} = useSWR(`https://api.themoviedb.org/3/watch/providers/regions?api_key=${process.env.NEXT_PUBLIC_APIV3}&language=en-US`)
          if(data === undefined) return (<div><Image src={loading_dot} alt={'loading'}/></div>)   
       return (
             <div className="border-2 border-darkBlue rounded w-11/12 mx-auto ">

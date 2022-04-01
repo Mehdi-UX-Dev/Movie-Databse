@@ -1,22 +1,29 @@
 
-          // for showing the results of the navbar buttons
-          import useFetch from "../utils/useFetch";
+          //** */ for showing the results of the navbar buttons
+        
+
           import { Form } from "./Form";
           import Navbar from "../utils/navbar";
           import NavCard from "../utils/CardMaker";
           import WatchProvider from "./WatchProvider";
           import { useState } from "react";
+          import useSWR  from 'swr'
+
+          // const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
         function NavClickResultCard({category,value,text}) {
+          // const { mutate } = useSWRConfig()
           //? adding the state for the page and setPageCount for the api 
               const [page,setPageCount] = useState(1)
-          // swr hook 
-           const {user} = useFetch('Movie Nav',`https://api.themoviedb.org/3/${category}/${value}?api_key=${process.env.NEXT_PUBLIC_APIV3}&language=en-US&page=${page}` )
+              // swr hook 
+               const {data} = useSWR(`https://api.themoviedb.org/3/${category}/${value}?api_key=${process.env.NEXT_PUBLIC_APIV3}&language=en-US&page=${page}`)
+           
+            // * handleClick function 
+           const handleClick = e => {
+            setPageCount(e.target.value)
+          }
 
-            //Todo storing the user  data to the array due to load more function and whenever any new data arrives it must be stored into that particular function 
-            
-
-          if(user == undefined) return <div className="text-5xl font-bold text-center grid items-center h-screen">...</div>      
+            if(data == undefined) return <div className="text-5xl font-bold text-center grid items-center h-screen">...</div>      
           return (<div>
             {/* navbar section */}
               <Navbar/>
@@ -34,17 +41,24 @@
                   </div>
             {/* cards section showing the results in the card */}
                <div className="flex flex-wrap justify-center col-span-2 space-x-3 space-y-4 pt-12 pr-3">
-              {user.results.map(data => (
+              {data.results.map(data => (
                 <NavCard  key={data.id} {...data}/>
               )
               )}
+              <div className="flex w-full justify-center py-2 h-12 space-x-4 text-white">
+                  {/*  //* button for changing page  */}
+                  <button className={`text-2xl ${page == 1 ? 'bg-darkBlue' : 'bg-lightBlue'} w-1/12 rounded hover:bg-darkBlue`} value={1} onClick={handleClick} >1</button>
+                  <button className={`text-2xl ${page == 2 ? 'bg-darkBlue' : 'bg-lightBlue'} w-1/12 rounded hover:bg-darkBlue`} value={2}  onClick={handleClick} >2</button>\
+                  <button className={`text-2xl ${page == 3 ? 'bg-darkBlue' : 'bg-lightBlue'} w-1/12 rounded hover:bg-darkBlue`} value={3}  onClick={handleClick} >3</button>\
+                  <button className={`text-2xl ${page == 4 ? 'bg-darkBlue' : 'bg-lightBlue'} w-1/12 rounded hover:bg-darkBlue`} value={4}  onClick={handleClick} >4</button>\
               </div>
               </div>
-
+              </div>
               </div>
           )
         }
         
         export default NavClickResultCard;
 
+      
         // moving it to the utils

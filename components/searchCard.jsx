@@ -2,14 +2,15 @@ import { useEffect, useState } from "react"
 import MyRadioGroup from "./MyRadioGroup"
 import Navbar from "../utils/navbar"
 import NavCard from "../utils/CardMaker"
-  import useFetch from '../utils/useFetch'
+import useSWR from "swr"
 
     
     function SearchCard({hidingTheValue,text,value}) {
                 // swrHook returning the value 
-    const {user} = useFetch('Movie and Tv Shows',
+    const {data,error} = useSWR(
     `https://api.themoviedb.org/3/search/multi?api_key=${process.env.NEXT_PUBLIC_APIV3}&language=en-US&query=${value}&page=1&include_adult=false`
-    );
+    ); 
+     
 
             // storage for the data for mapping and filtering 
             const [storage, setStorage] = useState([])
@@ -17,11 +18,11 @@ import NavCard from "../utils/CardMaker"
             // useEffect Hook 
             useEffect(() => {
               // this implementation is not the most logical way of making the system work 
-              if(user !== undefined && storage.length == 0) setStorage(user.results)
-            },[storage,user])
+              if(data !== undefined && storage.length == 0) setStorage(data.results)
+            },[storage,data])
           // the storage must be updated according to the radio button 
           const updateStorage = selection => {
-         const filteredData = user.results.filter(select => {
+         const filteredData = data.results.filter(select => {
                switch(selection){
                  case 'tv': return select.media_type === selection;
                  case 'movie' : return select.media_type === selection;
@@ -33,7 +34,7 @@ import NavCard from "../utils/CardMaker"
                 setStorage(filteredData)
             }
 
-    if(user == undefined) return <div className="text-5xl font-bold text-center grid items-center h-screen">...</div>   
+    if(data == undefined) return <div className="text-5xl font-bold text-center grid items-center h-screen">...</div>   
       return (
       <div>
           {/* navbar component */}

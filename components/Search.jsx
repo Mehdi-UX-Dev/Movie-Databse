@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 
 function Search() {
   
-
           // defining react router 
           const router =  useRouter()
     

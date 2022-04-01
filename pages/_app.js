@@ -6,17 +6,20 @@ import { SessionProvider } from "next-auth/react"
 import { store } from '../redux/store'
 // importing provider
 import { Provider } from 'react-redux'
+import { SWRConfig } from 'swr'
 
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
   return ( 
+      <SWRConfig value={{fetcher : (resource) => fetch(resource).then(res => res.json())}}>
     <Provider store={store}>
-    <SessionProvider session={session}>
+       <SessionProvider session={session}>
       <Component {...pageProps} />
     </SessionProvider>
     </Provider>
+    </SWRConfig>
   )
 }
 

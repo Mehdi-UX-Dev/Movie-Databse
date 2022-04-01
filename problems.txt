@@ -1,7 +1,7 @@
 
    
         1   adding the load more button
-        2   adding the functionality to the mediums and makig the pop up modals for the each streaming service 
+        2   adding the functionality to the mediums and making the pop up modals for the each streaming service 
         3   adding the every movie and tv specific detail to the app 
         3.1 adding the signout function and avatar  
         4   adding the google provider 
