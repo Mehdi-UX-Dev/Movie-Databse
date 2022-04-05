@@ -13,7 +13,7 @@ function WatchProviderMedium({param}) {
     //* adding the refresh interval due to the changing state in the countries state component  
   const {data} = useSWR(`https://api.themoviedb.org/3/watch/providers/${genre}?api_key=${process.env.NEXT_PUBLIC_APIV3}&language=en-US&watch_region=${region}`)
 
-  if(data == undefined) return (<div className='text-center text-4xl font-bold pb-4'>...</div>)
+  if(data == undefined) return (<div className='text-center text-2xl font-bold pb-4 pt-2'>Loading...</div>)
   return (
     <div className='flex flex-wrap justify-center mt-2 overflow-auto h-64 md:w-80 md:mx-auto  '>
       {data.results.map((data ,index) => (

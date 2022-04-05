@@ -2,25 +2,30 @@ import '../styles/globals.css'
 
 // pages/_app.js
 import { SessionProvider } from "next-auth/react"
-// importing store 
 import { store } from '../redux/store'
-// importing provider
 import { Provider } from 'react-redux'
 import { SWRConfig } from 'swr'
 
-export default function App({
-  Component,
-  pageProps: { session, ...pageProps },
-}) {
-  return ( 
-      <SWRConfig value={{fetcher : (resource) => fetch(resource).then(res => res.json())}}>
-    <Provider store={store}>
-       <SessionProvider session={session}>
-      <Component {...pageProps} />
-    </SessionProvider>
-    </Provider>
-    </SWRConfig>
-  )
-}
+    export default function App({
+      Component,
+        pageProps: { session, ...pageProps },
+      }) {
+        return (
+            // * providing the fetcher function to all component 
+              <SWRConfig value={{fetcher : (resource) => fetch(resource).then(res => res.json())}}>
 
-// checking for the potential bugs in the tailwind and next js
+                {/* //* redux store  */}
+                <Provider store={store}>
+
+                  {/* //* next-auth use Session  */}
+              <SessionProvider session={session}>
+
+                {/* //* main component  */}
+              <Component {...pageProps} />
+          
+            </SessionProvider>
+            </Provider>
+            </SWRConfig>
+                  )
+                      }
+

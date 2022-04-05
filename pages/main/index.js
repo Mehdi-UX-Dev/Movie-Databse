@@ -1,28 +1,17 @@
 import React from 'react'
 import Navbar from '../../utils/navbar'
-import {getSession} from 'next-auth/react'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import {useSession} from 'next-auth/react'
 import Search from '../../components/Search'
 import Cards from '../../components/cards'
 import Image from 'next/image'
 import spinner from '../../public/spinner.svg'
+import MyModal from '../../utils/MyModal'
+import useImage from '../../utils/useImage'
 
 function Main({posts}) {
+      const {status} = useSession();
 
-  const [data, setData] = useState(false)
-  useEffect(() => {
-    async function fetch() {
-      const session = await getSession();
-       if(session){
-          setData(true)
-       } 
-    }
-    fetch()
-}, [])
-   
-
-        if(data){
+        if(status == 'authenticated'){
           return (
             <div>
             <Navbar posts={posts.genres}/>
@@ -30,19 +19,22 @@ function Main({posts}) {
             <Cards posts={posts}  text={'Trending'} hidingTheValue={true} />
           </div>
           )
-        } else {
-    // make a timeout function for the below spinner and set a state for the timeout about of 3 sec
+        }   else if(status == 'loading') {
           return (
             <div className='flex justify-center items-center mx-auto h-screen'>
             <Image height={150} width={120} src={spinner} alt='spinner' />
             </div>
           )
-        }     
-        }
+              }   else {
+              // * making the pop up modal and giving a button to the signing index page 
+              <MyModal />
+                            } 
+          }
         
         export default Main;
 
     export async function getStaticProps(context) {
+          console.log(context);
           const api = process.env.NEXT_PUBLIC_APIV3
           const response = await fetch(`
           https://api.themoviedb.org/3/trending/all/day?api_key=${api}&language=en-US`)
