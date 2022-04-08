@@ -66,7 +66,7 @@ function Navbar() {
         <div className=' self-center relative  mr-4 '>
           <Image  src={session.data !== undefined ? session.data.user.image : vercel } alt="avatar" height={30} width={30} className="rounded-full" onClick={handleClick}/>
             <div className='bg-gray-300 absolute   rounded divide-y-2 divide-gray-500  font-bold  right-0' hidden={visiblity.avatarVisible}> 
-              <span className='px-2'>{session.data !== undefined ? session.data.user.name : 'waiting' }</span>
+              <span className='px-2 block '>{session.data !== undefined ? session.data.user.name : 'waiting' }</span>
               <span className='px-2'>{session.data !== undefined ? session.data.user.email : 'waiting' }</span>
               <Link href={'/api/auth/signout'}><a className='block text-center bg-darkBlue hover:bg-gray-700 text-white rounded mt-'>Log out</a></Link>
             </div>

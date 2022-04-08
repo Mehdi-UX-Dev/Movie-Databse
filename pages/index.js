@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faGithub, faGoogle} from '@fortawesome/free-brands-svg-icons'
 import Image from 'next/image';
@@ -8,26 +8,24 @@ import { getSession, signIn, useSession } from "next-auth/react"
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import spinner from '../public/spinner.svg'
-import useImage from '../utils/useImage'
+
+// const gallery = ['iron-man','batman','poker','joker', 'jokerwall', 'jokercard', 'netflix' ]
 
 function Index(){
-      const image = useImage()
-     
-
-      const router = useRouter();  
  
-     const {status} =  useSession()
-
-     useEffect(() => {
-          // authenticating the server side 
-          if(status == 'authenticated'){
+  const router = useRouter();  
+  const {status} =  useSession()
+  
+  useEffect(() => {
+    // authenticating the server side 
+    if(status == 'authenticated'){
             router.push('/main')
           }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+          // eslint-disable-next-line react-hooks/exhaustive-deps
         },[status]) 
         
-       if(status !== 'authenticated') {
-       return  <div className={` bg-cover bg-center  grid content-center justify-items-center md:grid-cols-3 h-screen  md:h-screen w-auto  `}>
+        if(status !== 'authenticated') {
+          return  <div  className={`bg-netflix bg-cover bg-center  grid content-center justify-items-center md:grid-cols-3 h-screen  md:h-screen w-auto  `}>
         <div className='grid  justify-items-center md:flex  '>
         {/* Intro section  */}
         <div className='text-white text-lg md:self-center px-4   '>
@@ -52,7 +50,6 @@ function Index(){
               <Link href='/main'>
                 <a className='font-bold text-gray-700  group-hover:text-white pl-2' onClick={e => {e.preventDefault()
                 {signIn()}
-              
               }}>Sign In with GitHub</a>
               </Link>
               </div>
@@ -64,8 +61,8 @@ function Index(){
               <Link href='/main'>
                 <a className='font-bold text-gray-700  group-hover:text-white pl-2' onClick={e => {e.preventDefault()
                 {signIn()}
-            
-                }}>Sign In with Google</a>
+                
+              }}>Sign In with Google</a>
               </Link>
               </div>
 
@@ -78,15 +75,14 @@ function Index(){
         else {
           return  <div className="flex justify-center items-center h-screen"><Image src={spinner} className="" alt="spinner"/></div>
         }
-
-
-}
-
+        
+        
+      }
+      
 export default Index
 
 // authenticating server side 
 export async function getServerSideProps(context) {
-
   // getting the session here to check if the user is signed in 
   return {
     props: {

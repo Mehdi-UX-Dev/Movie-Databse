@@ -7,7 +7,13 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        "batman" : "url('../public/Tmdb_short.svg')"
+        "batman" : "url('../public/Batman.jpg')",
+        "iron-man":"url('../public/iron-man.jpg')",
+        "joker" : "url('../public/joker.jpg')",
+        "poker" : "url('../public/poker.jpg')",
+        "jokerwall" : "url('../public/jokerwall.jpg')",
+        "jokercard" : "url('../public/jokercard.jpg')",
+        "netflix" : "url('../public/Netflix.jpg')"
       },
           colors: {
             darkBlue : '#0d253f',

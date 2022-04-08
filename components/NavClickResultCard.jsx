@@ -1,29 +1,33 @@
 
           //** */ for showing the results of the navbar buttons
-        
-
           import { Form } from "./Form";
           import Navbar from "../utils/navbar";
           import NavCard from "../utils/CardMaker";
           import WatchProvider from "./WatchProvider";
           import { useState } from "react";
           import useSWR  from 'swr'
-
-          // const fetcher = (...args) => fetch(...args).then((res) => res.json());
+          import MyModal from "../utils/MyModal";
+          import { useSession } from "next-auth/react";
+          import Image from "next/image";
+          import loading_dot from '../public/loading_dot.svg'
+        
 
         function NavClickResultCard({category,value,text}) {
-          // const { mutate } = useSWRConfig()
+          //* securing pages client side 
+          const {status} = useSession()
+         
           //? adding the state for the page and setPageCount for the api 
               const [page,setPageCount] = useState(1)
               // swr hook 
-               const {data} = useSWR(`https://api.themoviedb.org/3/${category}/${value}?api_key=${process.env.NEXT_PUBLIC_APIV3}&language=en-US&page=${page}`)
+               const {data,error} = useSWR(`https://api.themoviedb.org/3/${category}/${value}?api_key=${process.env.NEXT_PUBLIC_APIV3}&language=en-US&page=${page}`)
            
             // * handleClick function 
            const handleClick = e => {
             setPageCount(e.target.value)
           }
 
-            if(data == undefined) return <div className="text-5xl font-bold text-center grid items-center h-screen">...</div>      
+            //  if(data == undefined && error || status == 'unauthenticated' ) return <MyModal error={error.toString()} status={status}/>     
+            if(data == undefined) return (<div className="grid h-screen content-center" ><Image src={loading_dot} alt={'loading'} height={200} width={200} layout={''}/></div>)
           return (<div>
             {/* navbar section */}
               <Navbar/>
