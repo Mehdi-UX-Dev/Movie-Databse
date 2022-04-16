@@ -35,7 +35,7 @@ function Index(){
           <span className=''>TMDB Database allows you to access all movies and all information related to them. </span>
         </div>
         {/* space  */}
-        <div className='bg-gray-200 border-b-4  md:border-r-4 md:h-36 self-center w-40 md:w-0 mt-4  '></div>
+        <div className='bg-gray-200 border-b-4  md:border-r-4 md:h-36 self-center w-40 md:w-0 mt-4'></div>
         </div>
         
         {/* sign in section  */}

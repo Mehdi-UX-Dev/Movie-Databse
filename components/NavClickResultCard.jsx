@@ -2,7 +2,7 @@
           //** */ for showing the results of the navbar buttons
           import { Form } from "./Form";
           import Navbar from "../utils/navbar";
-          import NavCard from "../utils/CardMaker";
+          import CardMaker from "../utils/CardMaker";
           import WatchProvider from "./WatchProvider";
           import { useState } from "react";
           import useSWR  from 'swr'
@@ -26,7 +26,7 @@
             setPageCount(e.target.value)
           }
 
-            //  if(data == undefined && error || status == 'unauthenticated' ) return <MyModal error={error.toString()} status={status}/>     
+             if(data == undefined && error || status == 'unauthenticated' ) return <MyModal error={error.toString()} status={status}/>     
             if(data == undefined) return (<div className="grid h-screen content-center" ><Image src={loading_dot} alt={'loading'} height={200} width={200} layout={''}/></div>)
           return (<div>
             {/* navbar section */}
@@ -46,7 +46,7 @@
             {/* cards section showing the results in the card */}
                <div className="flex flex-wrap justify-center col-span-2 space-x-3 space-y-4 pt-12 pr-3">
               {data.results.map(data => (
-                <NavCard  key={data.id} {...data}/>
+                <CardMaker  key={data.id} {...data}/>
               )
               )}
               <div className="flex w-full justify-center py-2 h-12 space-x-4 text-white">
