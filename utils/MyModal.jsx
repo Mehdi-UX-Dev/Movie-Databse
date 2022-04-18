@@ -1,30 +1,37 @@
+import { Dialog, Transition } from "@headlessui/react";
+import { useRouter } from "next/router";
+import { Fragment, useEffect, useState } from "react";
 
-import { Dialog, Transition } from '@headlessui/react'
-import { useRouter } from 'next/router'
-import { Fragment, useEffect, useState } from 'react'
+export default function MyModal({ error, status }) {
+  const [message, setMessage] = useState({});
 
-export default function MyModal({error, status}) {
- 
-  const [message,setMessage] = useState({})
-     
-      useEffect(() => {
-          if(error) setMessage({type: 'data_error',code: error , direction: 'Please reload the page', button: 'Click to reload' })
-          if(status == 'unauthenticated') setMessage({type: 'authentication', code : status, direction: 'Please sign in to continue', button: 'Go to the Sign Page '}) 
-      },[error,status])
+  useEffect(() => {
+    if (error)
+      setMessage({
+        type: "data_error",
+        code: error,
+        direction: "Please reload the page",
+        button: "Click to reload",
+      });
+    if (status == "unauthenticated")
+      setMessage({
+        type: "authentication",
+        code: status,
+        direction: "Please sign in to continue",
+        button: "Go to the Sign Page ",
+      });
+  }, [error, status]);
 
-    
-
-  let [isOpen, setIsOpen] = useState(true)
-  const router = useRouter()
+  let [isOpen, setIsOpen] = useState(true);
+  const router = useRouter();
 
   function closeModal(param) {
-    console.log('in the close moda;');
-    if(param == 'data_error') router.reload()
-    if(param == 'authentication')router.push('/')
+    if (param == "data_error") router.reload();
+    if (param == "authentication") router.push("/");
   }
 
   function openModal() {
-    setIsOpen(true)
+    setIsOpen(true);
   }
 
   return (
@@ -80,12 +87,13 @@ export default function MyModal({error, status}) {
                   className="text-lg font-medium leading-6 text-gray-900 capitalize"
                 >
                   {/* //!  */}
-                  {message.type} <span className='font-bold'> {message.code} </span>
+                  {message.type}{" "}
+                  <span className="font-bold"> {message.code} </span>
                 </Dialog.Title>
                 <div className="mt-2">
                   {/* //!  */}
                   <p className="text-sm text-gray-500 font-medium">
-                     {message.direction}                      
+                    {message.direction}
                   </p>
                 </div>
 
@@ -96,7 +104,7 @@ export default function MyModal({error, status}) {
                     onClick={() => closeModal(message.type)}
                   >
                     {/* //!  */}
-                  {message.button}
+                    {message.button}
                   </button>
                 </div>
               </div>
@@ -105,5 +113,5 @@ export default function MyModal({error, status}) {
         </Dialog>
       </Transition>
     </>
-  )
+  );
 }

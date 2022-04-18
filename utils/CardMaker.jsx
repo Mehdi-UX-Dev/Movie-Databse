@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import vercel from "../public/vercel.svg";
 
-function CardMaker({ ...data }) {
+function CardMaker({ category ,...data }) {
   // checking for the error handling in the images // if image not fetched then vercel svg will be shown
   let pic =
     data.poster_path !== undefined && data.poster_path !== null
@@ -10,7 +10,7 @@ function CardMaker({ ...data }) {
       : vercel;
   return (
     <div className="sm:w-56 w-40   md:hover:scale-105  overflow-hidden rounded-lg shadow-lg bg-gray-200 ">
-      <Link href={`/main/mediaDetail/${data.media_type}/${data.id}`} passHref>
+      <Link href={`/main/mediaDetail/${data.media_type || category }/${data.id}`} passHref>
         <a>
           <Image
           src={pic}

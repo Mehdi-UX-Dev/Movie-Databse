@@ -11,7 +11,6 @@ const MediaDetail = ({ id, media }) => {
   const { data, error } = useSWR(
     `https://api.themoviedb.org/3/${media}/${id}?api_key=${process.env.NEXT_PUBLIC_APIV3}&language=en-US`
   );
-  console.log(data);
 
   if ((error && data == undefined) || status == "unauthenticated")
     return (

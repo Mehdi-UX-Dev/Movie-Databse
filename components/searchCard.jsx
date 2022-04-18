@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import MyRadioGroup from "./MyRadioGroup";
 import Navbar from "../utils/navbar";
-import NavCard from "../utils/CardMaker";
 import useSWR from "swr";
 import MyModal from "../utils/MyModal";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import loading_dot from "../public/loading_dot.svg";
 import { Form } from "./Form";
+import CardMaker from "../utils/CardMaker";
 
 function SearchCard({ hidingTheValue, text, value }) {
   // swrHook returning the value
@@ -20,7 +20,6 @@ function SearchCard({ hidingTheValue, text, value }) {
   // storage for the data for mapping and filtering
   const [storage, setStorage] = useState([]);
 
-
   // useEffect Hook
   useEffect(() => {
     // this implementation is not the most logical way of making the system work
@@ -29,7 +28,6 @@ function SearchCard({ hidingTheValue, text, value }) {
 
   // the storage must be updated according to the radio button
   const updateStorage = (selection) => {
-    console.log(data);
     const filteredData = data.results.filter((select) => {
       switch (selection) {
         case "tv":
@@ -89,7 +87,7 @@ function SearchCard({ hidingTheValue, text, value }) {
         <div className="col-span-2 w-11/12 pl-4 space-y-4 justify-self-center md:flex md:flex-wrap md:space-x-2 ">
           {/* mapping  */}
           {storage.map((data) => (
-            <NavCard key={data.id} {...data} />
+            <CardMaker key={data.id} {...data} />
           ))}
         </div>
       </div>
