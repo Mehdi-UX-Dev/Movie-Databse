@@ -25,7 +25,7 @@ function Search() {
 
       return (
         <div className="h-1/3">
-        <div className=" bg-[url('../public/Batman.jpg')] bg-cover h-96 flex items-center flex-wrap ">
+        <div className=" bg-[url('../public/joker.jpg')] bg-cover h-96 flex items-center flex-wrap ">
           {/* heading  */}
           <div className="mx-8 text-white font-mono">
          <h1 className='text-6xl  font-bold '>Welcome</h1>

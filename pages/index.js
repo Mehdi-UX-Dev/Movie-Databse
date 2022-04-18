@@ -21,11 +21,10 @@ function Index(){
     if(status == 'authenticated'){
             router.push('/main')
           }
-          // eslint-disable-next-line react-hooks/exhaustive-deps
-        },[status]) 
+        },[status,router]) 
         
         if(status !== 'authenticated') {
-          return  <div  className={`bg-netflix bg-cover bg-center  grid content-center justify-items-center md:grid-cols-3 h-screen  md:h-screen w-auto  `}>
+          return  <div  className="bg-[url('../public/Netflix.jpg')] bg-cover bg-center  grid content-center justify-items-center md:grid-cols-3 h-screen  md:h-screen w-auto">
         <div className='grid  justify-items-center md:flex  '>
         {/* Intro section  */}
         <div className='text-white text-lg md:self-center px-4   '>
