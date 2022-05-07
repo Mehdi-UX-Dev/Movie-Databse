@@ -134,7 +134,7 @@ const MediaDetail = ({ id, media }) => {
               ))}
             </div>
             {/* status  */}
-            <span className="text-md font-medium px-4 hidden md:inline-block">
+            <span className="text-md font-medium px-4 hidden md:block">
               Status:{" "}
               <span className="font-bold font-serif ">{data.status}</span>
               {/* production countries */}
