@@ -136,9 +136,9 @@ const MediaDetail = ({ id, media }) => {
             {/* status  */}
             <span className="text-md font-medium px-4">
               Status:{" "}
-              <span className="font-bold font-serif">{data.status}</span>
+              <span className="font-bold font-serif hidden md:inline-block">{data.status}</span>
               {/* production countries */}
-              <div className="pt-4 space-y-2 ">
+              <div className="pt-4 space-y-2 hidden md:block">
                 <h3 className="font-semibold">
                   {data.production_countries.length == 1
                     ? "Production Country: "
@@ -151,10 +151,10 @@ const MediaDetail = ({ id, media }) => {
                       alt="country"
                       height={40}
                       width={40}
-                      className="bg-gray-300 rounded hidden md:inline-block"
+                      className="bg-gray-300 rounded "
                       src={`https://countryflagsapi.com/svg/${count.iso_3166_1}`}
                     />
-                    <span className="px-2 font-bold hidden md:inline-block ">{count.name}</span>
+                    <span className="px-2 font-bold ">{count.name}</span>
                   </div>
                 ))}
               </div>
