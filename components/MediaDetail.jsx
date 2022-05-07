@@ -151,7 +151,7 @@ const MediaDetail = ({ id, media }) => {
                       alt="country"
                       height={40}
                       width={40}
-                      className="bg-gray-300 rounded"
+                      className="bg-gray-300 rounded hidden md:inline-block"
                       src={`https://countryflagsapi.com/svg/${count.iso_3166_1}`}
                     />
                     <span className="px-2 font-bold hidden md:inline-block ">{count.name}</span>
