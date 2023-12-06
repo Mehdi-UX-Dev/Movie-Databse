@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faGithub, faGoogle} from '@fortawesome/free-brands-svg-icons'
 import Image from 'next/image';

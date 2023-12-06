@@ -1,6 +1,6 @@
       import Image from "next/image";
       import { useRouter } from "next/router"
-import NavClickResultCard from "../../../components/NavClickResultCard";
+      import NavClickResultCard from "../../../components/NavClickResultCard";
       import spinner from '../../../public/spinner.svg'
          
             
