@@ -8,7 +8,7 @@ function Main({ posts }) {
     <div>
       <Navbar />
       <Search />
-      {/* <Cards posts={posts} text={"Trending"} hidingTheValue={true} /> */}
+      <Cards posts={posts} text={"Trending"} hidingTheValue={true} />
     </div>
   );
 }
