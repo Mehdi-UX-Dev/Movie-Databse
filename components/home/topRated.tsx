@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 
 import Carousel from "../UI_components/carousel/Carousel";
@@ -16,7 +17,7 @@ const TopRated = () => {
     };
 
     return (
-        <div className="carouselSection">
+        <div className="carouselSection relative mb-[70px]">
             <ContentWrapper>
                 <span className="carouselTitle">Top Rated</span>
                 <SwitchTabs

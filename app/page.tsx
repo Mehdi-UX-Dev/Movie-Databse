@@ -5,7 +5,7 @@ import Trending from "@/components/home/trending";
 
 export default function Home() {
   return (
-    <main className="homePage">
+    <main >
       <HeroBanner />
       <Trending />
       <Popular />

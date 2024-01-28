@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./style.scss";
 import useFetch from "../../hooks/useFetch";
 
 import ContentWrapper from "../UI_components/contentWrapper/ContentWrapper";
