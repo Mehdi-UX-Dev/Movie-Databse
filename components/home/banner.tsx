@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-
 import "./style.scss";
-
 import useFetch from "../../hooks/useFetch";
 
-import Img from "../../../components/lazyLoadImage/Img";
-import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
+import ContentWrapper from "../UI_components/contentWrapper/ContentWrapper";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { useAppSelector } from "@/redux/hooks";
 
 const HeroBanner = () => {
   const [background, setBackground] = useState("");
@@ -15,7 +13,7 @@ const HeroBanner = () => {
 
   const { push } = useRouter();
 
-  const { url } = useSelector((state) => state.home);
+  const { url } = useAppSelector((state) => state.home);
   const { data, loading } = useFetch("/movie/upcoming");
 
   useEffect(() => {
@@ -25,7 +23,9 @@ const HeroBanner = () => {
     setBackground(bg);
   }, [data]);
 
-  const searchQueryHandler = (event ) => {
+  const searchQueryHandler: React.KeyboardEventHandler<HTMLInputElement> = (
+    event
+  ) => {
     if (event.key === "Enter" && query.length > 0) {
       push(`/search/${query}`);
     }
@@ -35,7 +35,7 @@ const HeroBanner = () => {
     <div className="heroBanner">
       {!loading && (
         <div className="backdrop-img">
-          <Img src={background} />
+          <Image src={background} alt="" />
         </div>
       )}
 
