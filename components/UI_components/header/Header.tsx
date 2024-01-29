@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 import { SlMenu } from "react-icons/sl";
 import { VscChromeClose } from "react-icons/vsc";
-import { useNavigate, useLocation } from "react-router-dom";
 
 import ContentWrapper from "../contentWrapper/ContentWrapper";
 import logo from "../../assets/movix-logo.svg";
@@ -12,12 +11,12 @@ import { usePathname, useRouter } from "next/navigation";
 const Header = () => {
   const [show, setShow] = useState("top");
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [mobileMenu, setMobileMenu] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState<boolean>(false);
   const [query, setQuery] = useState("");
-  const [showSearch, setShowSearch] = useState("");
+  const [showSearch, setShowSearch] = useState<boolean>();
 
   const { push } = useRouter();
-  const location = usePathname()
+  const location = usePathname();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -43,7 +42,9 @@ const Header = () => {
     };
   }, [lastScrollY]);
 
-  const searchQueryHandler = (event) => {
+  const searchQueryHandler: React.KeyboardEventHandler<HTMLInputElement> = (
+    event
+  ) => {
     if (event.key === "Enter" && query.length > 0) {
       push(`/search/${query}`);
       setTimeout(() => {
@@ -62,7 +63,7 @@ const Header = () => {
     setShowSearch(false);
   };
 
-  const navigationHandler = (type) => {
+  const navigationHandler = (type: string) => {
     if (type === "movie") {
       push("/explore/movie");
     } else {
@@ -81,19 +82,25 @@ const Header = () => {
         <div className="cursor-pointer " onClick={() => push("/")}>
           <Image src={logo} alt="logo" height={50} />
         </div>
-        <ul className="menuItems">
-          <li className="menuItem" onClick={() => navigationHandler("movie")}>
+        <ul className="list-none hidden md:flex items-center">
+          <li
+            className="h-12 flex items-center my-4 text-white relative cursor-pointer hover:text-pink-500"
+            onClick={() => navigationHandler("movie")}
+          >
             Movies
           </li>
-          <li className="menuItem" onClick={() => navigationHandler("tv")}>
+          <li
+            className="h-12 items-center my-4 text-white relative cursor-pointer hover:text-pink-500"
+            onClick={() => navigationHandler("tv")}
+          >
             TV Shows
           </li>
-          <li className="menuItem">
+          <li className="h-12 items-center my-4 text-white relative cursor-pointer hover:text-pink-500 ">
             <HiOutlineSearch onClick={openSearch} />
           </li>
         </ul>
 
-        <div className="mobileMenuItems">
+        <div className="flex items-center gap-5 md:hidden">
           <HiOutlineSearch onClick={openSearch} />
           {mobileMenu ? (
             <VscChromeClose onClick={() => setMobileMenu(false)} />
