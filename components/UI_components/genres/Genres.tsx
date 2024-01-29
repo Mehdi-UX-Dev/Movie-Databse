@@ -1,6 +1,5 @@
 import React from "react";
 
-import "./style.scss";
 import { useAppSelector } from "@/redux/hooks";
 
 const Genres = ({ data }: any) => {

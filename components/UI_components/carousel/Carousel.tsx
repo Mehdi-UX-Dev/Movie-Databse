@@ -7,11 +7,10 @@ import {
 import dayjs from "dayjs";
 
 import ContentWrapper from "../contentWrapper/ContentWrapper";
-import PosterFallback from "../../assets/no-poster.png";
+import PosterFallback from "../../../public/assets/no-poster.png";
 import CircleRating from "../circleRating/CircleRating";
 import Genres from "../genres/Genres";
 
-import "./style.scss";
 import { useAppSelector } from "@/redux/hooks";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -74,7 +73,10 @@ const Carousel = ({
           onClick={() => push("right")}
         />
         {!loading ? (
-          <div className=" flex gap-3 overflow-y-hidden -mr-5 -ml-5 py-5 " ref={carouselContainer}>
+          <div
+            className=" flex gap-3 overflow-y-hidden -mr-5 -ml-5 py-5 "
+            ref={carouselContainer}
+          >
             {data?.map((item: any) => {
               const posterUrl = item.poster_path
                 ? url.poster + item.poster_path
