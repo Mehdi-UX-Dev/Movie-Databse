@@ -10,6 +10,8 @@ import { useAppSelector } from "@/redux/hooks";
 const HeroBanner = () => {
   const [background, setBackground] = useState("");
   const [query, setQuery] = useState("");
+  console.log(background);
+  
 
   const { push } = useRouter();
 
@@ -35,7 +37,7 @@ const HeroBanner = () => {
     <div className="heroBanner">
       {!loading && (
         <div className="backdrop-img">
-          <Image src={background} alt="" />
+          {/* <Image src={background} alt="" width={40} height={40} /> */}
         </div>
       )}
 

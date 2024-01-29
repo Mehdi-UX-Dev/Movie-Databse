@@ -80,7 +80,7 @@ const Header = () => {
     >
       <ContentWrapper>
         <div className="cursor-pointer " onClick={() => push("/")}>
-          <Image src={logo} alt="logo" height={50} />
+          <Image src={logo} alt="logo" height={50} width={50} />
         </div>
         <ul className="list-none hidden md:flex items-center">
           <li

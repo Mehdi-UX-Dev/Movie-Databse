@@ -4,6 +4,7 @@ type homeSliceTypes = {
   url: {
     backdrop?: string;
     poster?: string
+    profile?:string
   };
   genres: any;
 };

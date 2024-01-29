@@ -27,7 +27,10 @@ const Carousel = ({
   title?: string;
 }) => {
   const carouselContainer = useRef<HTMLDivElement>(null!);
-  const { url } = useAppSelector((state) => state.home);
+
+  const {
+    url: { poster },
+  } = useAppSelector((state) => state.home);
 
   const { push } = useRouter();
   const navigation = (dir: string) => {
@@ -66,11 +69,11 @@ const Carousel = ({
         )}
         <BsFillArrowLeftCircleFill
           className="left-[30px] text-[1.75rem] absolute top-[44%] cursor-pointer translate-y-[-50%] opacity-50 z-10 hover:opacity-80 "
-          onClick={() => push("left")}
+          onClick={() => navigation("left")}
         />
         <BsFillArrowRightCircleFill
           className="right-[30px] text-[1.75rem] absolute top-[44%] cursor-pointer translate-y-[-50%] opacity-50 z-10 hover:opacity-80"
-          onClick={() => push("right")}
+          onClick={() => navigation("right")}
         />
         {!loading ? (
           <div
@@ -78,9 +81,14 @@ const Carousel = ({
             ref={carouselContainer}
           >
             {data?.map((item: any) => {
-              const posterUrl = item.poster_path
-                ? url.poster + item.poster_path
+              console.log(poster + item.poster_path);
+
+              const posterUrl = poster
+                ? poster + item.poster_path
                 : PosterFallback;
+
+              // console.log(posterUrl);
+
               return (
                 <div
                   key={item.id}
@@ -90,7 +98,8 @@ const Carousel = ({
                   }
                 >
                   <div className="relative w-full aspect-[1/1.5] bg-cover bg-center flex items-end justify-between p-[10px] ">
-                    <Image src={posterUrl} alt="" />
+                    <Image src={posterUrl} alt="" width={40} height={40} />
+
                     <CircleRating rating={item.vote_average.toFixed(1)} />
                     <Genres data={item.genre_ids.slice(0, 2)} />
                   </div>

@@ -6,10 +6,10 @@ import Trending from "../../components/home/trending";
 export default function Home() {
   return (
     <main>
-      <HeroBanner />
+      {/* <HeroBanner /> */}
       <Trending />
-      <Popular />
-      <TopRated />
+      {/* <Popular /> */}
+      {/* <TopRated /> */}
     </main>
   );
 }
