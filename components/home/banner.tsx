@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 
@@ -10,8 +10,6 @@ import { useAppSelector } from "@/redux/hooks";
 const HeroBanner = () => {
   const [background, setBackground] = useState("");
   const [query, setQuery] = useState("");
-  console.log(background);
-  
 
   const { push } = useRouter();
 
@@ -20,10 +18,11 @@ const HeroBanner = () => {
 
   useEffect(() => {
     const bg =
+      url.backdrop &&
       url?.backdrop +
-      data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
-    setBackground(bg);
-  }, [data]);
+        data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
+    bg && setBackground(bg);
+  }, [data, url.backdrop]);
 
   const searchQueryHandler: React.KeyboardEventHandler<HTMLInputElement> = (
     event
@@ -33,32 +32,41 @@ const HeroBanner = () => {
     }
   };
 
+  console.log(background);
+
   return (
-    <div className="heroBanner">
+    <div className="bg-black h-[100vh] flex items-center  relative w-full">
       {!loading && (
-        <div className="backdrop-img">
-          {/* <Image src={background} alt="" width={40} height={40} /> */}
+        <div className="w-full h-full absolute top-0 left-0 overflow-hidden opacity-50 ">
+          <Image
+            src={background}
+            alt=""
+            fill
+            className="w-full h-full object-cover object-center "
+          />
         </div>
       )}
 
-      <div className="opacity-layer"></div>
-      <ContentWrapper>
-        <div className="heroBannerContent">
-          <span className="title">Welcome.</span>
-          <span className="subTitle">
-            Millions of movies, TV shows and people to discover. Explore now.
-          </span>
-          <div className="searchInput">
-            <input
-              type="text"
-              placeholder="Search for a movie or tv show...."
-              onChange={(e) => setQuery(e.target.value)}
-              onKeyUp={searchQueryHandler}
-            />
-            <button>Search</button>
-          </div>
+      <div className="w-full h-full bg-gradient-to-b absolute bottom-0 left-0 from-[rgba(4,21,45,0)0%] to-[#04152d_100%]"></div>
+     
+      <div className="flex flex-col text-white text-center max-w-[880px] relative mx-auto  ">
+        <span className="text-7xl font-bold ">Welcome.</span>
+        <span className="text-2xl mb-4">
+          Millions of movies, TV shows and people to discover. Explore now.
+        </span>
+        <div className="flex items-center w-full justify-center">
+          <input
+            type="text"
+            placeholder="Search for a movie or tv show...."
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyUp={searchQueryHandler}
+            className="w-[calc(100%-150px)] h-14 text-xl py-7 bg-white outline-0 border-0 rounded-l-3xl text-black placeholder:pl-2 "
+          />
+          <button className="text-lg w-[150px] h-14 bg-gradient-to-r from-[#f89e00] to-[#da2f68] text-white border-0 outline-0 rounded-r-3xl">
+            Search
+          </button>
         </div>
-      </ContentWrapper>
+      </div>
     </div>
   );
 };

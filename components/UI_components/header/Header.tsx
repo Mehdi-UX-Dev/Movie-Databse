@@ -4,7 +4,7 @@ import { SlMenu } from "react-icons/sl";
 import { VscChromeClose } from "react-icons/vsc";
 
 import ContentWrapper from "../contentWrapper/ContentWrapper";
-import logo from "../../assets/movix-logo.svg";
+import logo from "../../../public/assets/movix-logo.svg";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -74,54 +74,50 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed translate-y-0 w-full h-16 z-10 flex items-center justify-center transition-all duration-500  ${
-        mobileMenu ? "bg-black" : ""
-      } ${show}`}
+      className={`fixed translate-y-0 z-10 bg-black bg-opacity-25 w-full h-16 px-20 backdrop-blur-sm    flex items-center justify-between `}
     >
-      <ContentWrapper>
-        <div className="cursor-pointer " onClick={() => push("/")}>
-          <Image src={logo} alt="logo" height={50} width={50} />
-        </div>
-        <ul className="list-none hidden md:flex items-center">
-          <li
-            className="h-12 flex items-center my-4 text-white relative cursor-pointer hover:text-pink-500"
-            onClick={() => navigationHandler("movie")}
-          >
-            Movies
-          </li>
-          <li
-            className="h-12 items-center my-4 text-white relative cursor-pointer hover:text-pink-500"
-            onClick={() => navigationHandler("tv")}
-          >
-            TV Shows
-          </li>
-          <li className="h-12 items-center my-4 text-white relative cursor-pointer hover:text-pink-500 ">
-            <HiOutlineSearch onClick={openSearch} />
-          </li>
-        </ul>
 
-        <div className="flex items-center gap-5 md:hidden">
+
+      <div className="cursor-pointer  " onClick={() => push("/")}>
+        <Image src={logo} alt="logo" height={150} width={150}  className=""/>
+      </div>
+      <ul className="list-none hidden md:flex items-center space-x-4 ">
+        <li
+          className=" text-white cursor-pointer hover:text-pink-500"
+          onClick={() => navigationHandler("movie")}
+        >
+          Movies
+        </li>
+        <li
+          className=" text-white cursor-pointer hover:text-pink-500"
+          onClick={() => navigationHandler("tv")}
+        >
+          TV Shows
+        </li>
+        <li className=" text-white cursor-pointer hover:text-pink-500 ">
           <HiOutlineSearch onClick={openSearch} />
-          {mobileMenu ? (
-            <VscChromeClose onClick={() => setMobileMenu(false)} />
-          ) : (
-            <SlMenu onClick={openMobileMenu} />
-          )}
-        </div>
-      </ContentWrapper>
+        </li>
+      </ul>
+
+      <div className="flex items-center gap-5 md:hidden">
+        <HiOutlineSearch onClick={openSearch} />
+        {mobileMenu ? (
+          <VscChromeClose onClick={() => setMobileMenu(false)} />
+        ) : (
+          <SlMenu onClick={openMobileMenu} />
+        )}
+      </div>
       {showSearch && (
         <div className="searchBar">
-          <ContentWrapper>
-            <div className="searchInput">
-              <input
-                type="text"
-                placeholder="Search for a movie or tv show...."
-                onChange={(e) => setQuery(e.target.value)}
-                onKeyUp={searchQueryHandler}
-              />
-              <VscChromeClose onClick={() => setShowSearch(false)} />
-            </div>
-          </ContentWrapper>
+          <div className="searchInput">
+            <input
+              type="text"
+              placeholder="Search for a movie or tv show...."
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyUp={searchQueryHandler}
+            />
+            <VscChromeClose onClick={() => setShowSearch(false)} />
+          </div>
         </div>
       )}
     </header>

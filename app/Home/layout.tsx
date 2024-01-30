@@ -1,5 +1,6 @@
 "use client";
 
+import Header from "@/components/UI_components/header/Header";
 import { getApiConfiguration, getGenres } from "@/redux/homeSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { fetchDataFromApi } from "@/utils/api";
@@ -46,5 +47,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     genresCall();
   }, []);
 
-  return <div>{children}</div>;
+  return (
+    <div className="bg-[#04152d] ">
+      <Header />
+      {children}
+    </div>
+  );
 }

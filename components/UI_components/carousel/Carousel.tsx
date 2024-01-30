@@ -62,7 +62,7 @@ const Carousel = ({
   };
 
   return (
-    <div className="mb-[3.25rem]">
+    <div className="">
       <ContentWrapper>
         {title && (
           <div className="text-[1.5rem] text-white mb-[1.25rem]">{title}</div>
@@ -77,10 +77,10 @@ const Carousel = ({
         />
         {!loading ? (
           <div
-            className=" flex gap-3 overflow-y-hidden -mr-5 -ml-5 py-5 "
+            className=" flex gap-3  "
             ref={carouselContainer}
           >
-            {data?.map((item: any) => {
+            {data?.slice(0, 4)?.map((item: any) => {
               console.log(poster + item.poster_path);
 
               const posterUrl = poster
@@ -92,19 +92,27 @@ const Carousel = ({
               return (
                 <div
                   key={item.id}
-                  className="w-[125px] cursor-pointer"
+                  className=" cursor-pointer grow"
                   onClick={() =>
                     push(`/${item.media_type || endpoint}/${item.id}`)
                   }
                 >
-                  <div className="relative w-full aspect-[1/1.5] bg-cover bg-center flex items-end justify-between p-[10px] ">
-                    <Image src={posterUrl} alt="" width={40} height={40} />
+                  <div className="relative  aspect-[1/1.5] ">
+                    <Image
+                      src={posterUrl}
+                      alt=""
+                      width={450}
+                      height={450}
+                      placeholder="blur"
+                      blurDataURL={`${posterUrl}`}
+                      className="object-cover rounded-2xl"
+                    />
 
                     <CircleRating rating={item.vote_average.toFixed(1)} />
                     <Genres data={item.genre_ids.slice(0, 2)} />
                   </div>
-                  <div className="text-white flex flex-col">
-                    <span className=" mb-3 leading-5">
+                  <div className="text-white flex flex-col mt-10 space-y-1 mb-4">
+                    <span className="  leading-5">
                       {item.title || item.name}
                     </span>
                     <span className="text-[14px] opacity-50">
