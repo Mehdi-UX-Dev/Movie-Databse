@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "@/components/UI_components/footer/Footer";
 import Header from "@/components/UI_components/header/Header";
 import { getApiConfiguration, getGenres } from "@/redux/homeSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -8,13 +9,10 @@ import { useEffect } from "react";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const dispatch = useAppDispatch();
-  const { url } = useAppSelector((state) => state.home);
-  // console.log(url);
+  // const { url } = useAppSelector((state) => state.home);
 
   const fetchApiConfig = () => {
     fetchDataFromApi("/configuration").then((res) => {
-      // console.log(res);
-
       const url = {
         backdrop: res.images.secure_base_url + "original",
         poster: res.images.secure_base_url + "original",
@@ -35,7 +33,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     });
 
     const data = await Promise.all(promises);
-    // console.log(data);
     data.map(({ genres }) => {
       return genres.map((item: any) => (allGenres[item.id] = item));
     });
@@ -48,9 +45,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <div className="bg-[#04152d] ">
+    <div className="bg-[#04152d]  ">
       <Header />
       {children}
+      <Footer/>
     </div>
   );
 }

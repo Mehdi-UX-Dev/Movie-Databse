@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 
-import ContentWrapper from "../UI_components/contentWrapper/ContentWrapper";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useAppSelector } from "@/redux/hooks";
@@ -32,8 +31,6 @@ const HeroBanner = () => {
     }
   };
 
-  console.log(background);
-
   return (
     <div className="bg-black h-[100vh] flex items-center  relative w-full">
       {!loading && (
@@ -48,7 +45,7 @@ const HeroBanner = () => {
       )}
 
       <div className="w-full h-full bg-gradient-to-b absolute bottom-0 left-0 from-[rgba(4,21,45,0)0%] to-[#04152d_100%]"></div>
-     
+
       <div className="flex flex-col text-white text-center max-w-[880px] relative mx-auto  ">
         <span className="text-7xl font-bold ">Welcome.</span>
         <span className="text-2xl mb-4">

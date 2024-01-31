@@ -1,17 +1,17 @@
 import React from "react";
 import dayjs from "dayjs";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import "./style.scss";
-import Img from "../lazyLoadImage/Img";
 import CircleRating from "../circleRating/CircleRating";
 import Genres from "../genres/Genres";
 import PosterFallback from "../../assets/no-poster.png";
+import { useAppSelector } from "@/redux/hooks";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
-const MovieCard = ({ data, fromSearch, mediaType }) => {
-    const { url } = useSelector((state) => state.home);
-    const navigate = useNavigate();
+const MovieCard = ({ data, fromSearch, mediaType } : {data?: any , fromSearch?: any, mediaType?: any}) => {
+    const { url } = useAppSelector((state) => state.home);
+    const {push} = useRouter()
     const posterUrl = data.poster_path
         ? url.poster + data.poster_path
         : PosterFallback;
@@ -19,11 +19,11 @@ const MovieCard = ({ data, fromSearch, mediaType }) => {
         <div
             className="movieCard"
             onClick={() =>
-                navigate(`/${data.media_type || mediaType}/${data.id}`)
+                push(`/${data.media_type || mediaType}/${data.id}`)
             }
         >
             <div className="posterBlock">
-                <Img className="posterImg" src={posterUrl} />
+                <Image src={posterUrl} className="" alt=""/>
                 {!fromSearch && (
                     <React.Fragment>
                         <CircleRating rating={data.vote_average.toFixed(1)} />

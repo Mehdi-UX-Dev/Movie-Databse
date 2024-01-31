@@ -8,8 +8,8 @@ export default function Home() {
     <main>
       <HeroBanner />
       <Trending />
-      {/* <Popular /> */}
-      {/* <TopRated /> */}
+      <Popular />
+      <TopRated />
     </main>
   );
 }
