@@ -1,14 +1,16 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Select from "react-select";
 
-import useFetch from "../../../hooks/useFetch";
-import { fetchDataFromApi } from "../../../utils/api";
-import MovieCard from "../../../components/UI_components/movieCard/MovieCard";
-import Spinner from "../../../components/UI_components/spinner/Spinner";
+import useFetch from "../../../../hooks/useFetch";
+import { fetchDataFromApi } from "../../../../utils/api";
+import MovieCard from "../../../../components/UI_components/movieCard/MovieCard";
+import Spinner from "../../../../components/UI_components/spinner/Spinner";
 import { useParams } from "next/navigation";
 
-let filters : any = {};
+let filters: any = {};
 
 const sortbyData = [
   { value: "popularity.desc", label: "Popularity Descending" },
@@ -29,7 +31,7 @@ const Explore = () => {
   const [loading, setLoading] = useState(false);
   const [genre, setGenre] = useState(null);
   const [sortby, setSortby] = useState(null);
-  const {mediaType} = useParams<{mediaType : string}>();
+  const { mediaType } = useParams<{ mediaType: string }>();
 
   const { data: genresData } = useFetch(`/genre/${mediaType}/list`);
 
@@ -80,7 +82,7 @@ const Explore = () => {
     if (action.name === "genres") {
       setGenre(selectedItems);
       if (action.action !== "clear") {
-        let genreId = selectedItems.map((g : any) => g.id);
+        let genreId = selectedItems.map((g: any) => g.id);
         genreId = JSON.stringify(genreId).slice(1, -1);
         filters.with_genres = genreId;
       } else {
@@ -93,24 +95,37 @@ const Explore = () => {
   };
 
   return (
-    <div className="explorePage">
-      <div className="pageHeader">
-        <div className="pageTitle">
+    <div className="pt-20">
+      <div className="flex justify-between items-center max-w-6xl mx-auto ">
+        <div className="text-white text-[1.5rem]">
           {mediaType === "tv" ? "Explore TV Shows" : "Explore Movies"}
         </div>
-        <div className="filters">
+        <div className="flex gap-2 ">
           <Select
             isMulti
             name="genres"
             value={genre}
             closeMenuOnSelect={false}
             options={genresData?.genres}
-            getOptionLabel={(option : any) => option.name}
+            getOptionLabel={(option: any) => option.name}
             getOptionValue={(option) => option.id}
             onChange={onChange}
             placeholder="Select genres"
-            className="react-select-container genresDD"
+            className=""
             classNamePrefix="react-select"
+            styles={{
+              control: (baseStyles, state) => ({
+                ...baseStyles,
+                backgroundColor: "#173d77",
+                color: "white",
+                borderRadius: "20px",
+                border: "0",
+              }),
+              placeholder: (baseStyles) => ({
+                ...baseStyles,
+                color: "white",
+              }),
+            }}
           />
           <Select
             name="sortby"
@@ -119,23 +134,34 @@ const Explore = () => {
             onChange={onChange}
             isClearable={true}
             placeholder="Sort by"
-            className="react-select-container sortbyDD"
-            classNamePrefix="react-select"
+            styles={{
+              control: (baseStyles) => ({
+                ...baseStyles,
+                backgroundColor: "#173d77",
+                color: "white",
+                borderRadius: "20px",
+                border: "0",
+              }),
+              placeholder: (baseStyles) => ({
+                ...baseStyles,
+                color: "white",
+              }),
+            }}
           />
         </div>
       </div>
-      {loading && <Spinner initial={true} />}
+      {loading && <Spinner />}
       {!loading && (
-        <>
+        <div className="max-w-6xl mx-auto">
           {data?.results?.length > 0 ? (
             <InfiniteScroll
-              className="content"
+              className="flex flex-wrap gap-4 mt-8 "
               dataLength={data?.results?.length || []}
               next={fetchNextPageData}
               hasMore={pageNum <= data?.total_pages}
               loader={<Spinner />}
             >
-              {data?.results?.map((item : any, index : any) => {
+              {data?.results?.map((item: any, index: any) => {
                 if (item.media_type === "person") return;
                 return (
                   <MovieCard key={index} data={item} mediaType={mediaType} />
@@ -145,7 +171,7 @@ const Explore = () => {
           ) : (
             <span className="resultNotFound">Sorry, Results not found!</span>
           )}
-        </>
+        </div>
       )}
     </div>
   );

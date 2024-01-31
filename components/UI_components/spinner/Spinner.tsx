@@ -1,22 +1,13 @@
+import Image from "next/image";
 import React from "react";
+import loading from "../../../public/Rolling.svg";
 
-import "./style.scss";
-
-const Spinner = ({ initial  } : {initial?: any}) => {
-    return (
-        <div className={`loadingSpinner ${initial ? "initial" : ""}`}>
-            <svg className="spinner" viewBox="0 0 50 50">
-                <circle
-                    className="path"
-                    cx="25"
-                    cy="25"
-                    r="20"
-                    fill="none"
-                    strokeWidth="5"
-                ></circle>
-            </svg>
-        </div>
-    );
+const Spinner = () => {
+  return (
+    <div className="flex items-center justify-center h-full">
+      <Image src={loading} alt="loading"/>;
+    </div>
+  );
 };
 
 export default Spinner;

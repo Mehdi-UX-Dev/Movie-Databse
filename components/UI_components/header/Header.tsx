@@ -74,30 +74,30 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed translate-y-0 z-10 bg-black bg-opacity-25 w-full h-16 px-20 backdrop-blur-sm    flex items-center justify-between `}
+      className={`fixed translate-y-0 z-10 bg-black bg-opacity-25  h-16  backdrop-blur-sm    w-full   `}
     >
-
-
-      <div className="cursor-pointer  " onClick={() => push("/")}>
-        <Image src={logo} alt="logo" height={150} width={150}  className=""/>
+      <div className="flex justify-between items-center max-w-6xl h-full mx-auto">
+        <div className="cursor-pointer  " onClick={() => push("/")}>
+          <Image src={logo} alt="logo" height={150} width={150} className="" />
+        </div>
+        <ul className="list-none hidden md:flex items-center space-x-4 ">
+          <li
+            className=" text-white cursor-pointer hover:text-pink-500"
+            onClick={() => navigationHandler("movie")}
+          >
+            Movies
+          </li>
+          <li
+            className=" text-white cursor-pointer hover:text-pink-500"
+            onClick={() => navigationHandler("tv")}
+          >
+            TV Shows
+          </li>
+          <li className=" text-white cursor-pointer hover:text-pink-500 ">
+            <HiOutlineSearch onClick={openSearch} />
+          </li>
+        </ul>
       </div>
-      <ul className="list-none hidden md:flex items-center space-x-4 ">
-        <li
-          className=" text-white cursor-pointer hover:text-pink-500"
-          onClick={() => navigationHandler("movie")}
-        >
-          Movies
-        </li>
-        <li
-          className=" text-white cursor-pointer hover:text-pink-500"
-          onClick={() => navigationHandler("tv")}
-        >
-          TV Shows
-        </li>
-        <li className=" text-white cursor-pointer hover:text-pink-500 ">
-          <HiOutlineSearch onClick={openSearch} />
-        </li>
-      </ul>
 
       <div className="flex items-center gap-5 md:hidden">
         <HiOutlineSearch onClick={openSearch} />

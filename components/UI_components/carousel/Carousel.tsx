@@ -63,78 +63,67 @@ const Carousel = ({
 
   return (
     <div className="">
-      <ContentWrapper>
-        {title && (
-          <div className="text-[1.5rem] text-white mb-[1.25rem]">{title}</div>
-        )}
-        <BsFillArrowLeftCircleFill
-          className="left-[30px] text-[1.75rem] absolute top-[44%] cursor-pointer translate-y-[-50%] opacity-50 z-10 hover:opacity-80 "
-          onClick={() => navigation("left")}
-        />
-        <BsFillArrowRightCircleFill
-          className="right-[30px] text-[1.75rem] absolute top-[44%] cursor-pointer translate-y-[-50%] opacity-50 z-10 hover:opacity-80"
-          onClick={() => navigation("right")}
-        />
-        {!loading ? (
-          <div
-            className=" flex gap-3  "
-            ref={carouselContainer}
-          >
-            {data?.slice(0, 4)?.map((item: any) => {
-              console.log(poster + item.poster_path);
+      {title && (
+        <div className="text-[1.5rem] text-white mb-[1.25rem]">{title}</div>
+      )}
+      <BsFillArrowLeftCircleFill
+        className="left-[30px] text-[1.75rem] absolute top-[44%] cursor-pointer translate-y-[-50%] opacity-50 z-10 hover:opacity-80 "
+        onClick={() => navigation("left")}
+      />
+      <BsFillArrowRightCircleFill
+        className="right-[30px] text-[1.75rem] absolute top-[44%] cursor-pointer translate-y-[-50%] opacity-50 z-10 hover:opacity-80"
+        onClick={() => navigation("right")}
+      />
+      {!loading ? (
+        <div className=" flex gap-3  " ref={carouselContainer}>
+          {data?.slice(0, 4)?.map((item: any) => {
+            const posterUrl = poster
+              ? poster + item.poster_path
+              : PosterFallback;
 
-              const posterUrl = poster
-                ? poster + item.poster_path
-                : PosterFallback;
+            return (
+              <div
+                key={item.id}
+                className=" cursor-pointer grow"
+                onClick={() =>
+                  push(`/${item.media_type || endpoint}/${item.id}`)
+                }
+              >
+                <div className="relative  aspect-[1/1.5] ">
+                  <Image
+                    src={posterUrl}
+                    alt=""
+                    width={450}
+                    height={450}
+                    placeholder="blur"
+                    blurDataURL={`${posterUrl}`}
+                    className="object-cover rounded-2xl"
+                  />
 
-              // console.log(posterUrl);
-
-              return (
-                <div
-                  key={item.id}
-                  className=" cursor-pointer grow"
-                  onClick={() =>
-                    push(`/${item.media_type || endpoint}/${item.id}`)
-                  }
-                >
-                  <div className="relative  aspect-[1/1.5] ">
-                    <Image
-                      src={posterUrl}
-                      alt=""
-                      width={450}
-                      height={450}
-                      placeholder="blur"
-                      blurDataURL={`${posterUrl}`}
-                      className="object-cover rounded-2xl"
-                    />
-
-                    <CircleRating rating={item.vote_average.toFixed(1)} />
-                    <Genres data={item.genre_ids.slice(0, 2)} />
-                  </div>
-                  <div className="text-white flex flex-col mt-10 space-y-1 mb-4">
-                    <span className="  leading-5">
-                      {item.title || item.name}
-                    </span>
-                    <span className="text-[14px] opacity-50">
-                      {dayjs(item.release_date || item.first_air_date).format(
-                        "MMM D, YYYY"
-                      )}
-                    </span>
-                  </div>
+                  <CircleRating rating={item.vote_average.toFixed(1)} />
+                  <Genres data={item.genre_ids.slice(0, 2)} />
                 </div>
-              );
-            })}
-          </div>
-        ) : (
-          <div className="flex gap-2 overflow-y-hidden -mr-5 -ml-5 py-5 ">
-            {skItem()}
-            {skItem()}
-            {skItem()}
-            {skItem()}
-            {skItem()}
-          </div>
-        )}
-      </ContentWrapper>
+                <div className="text-white flex flex-col mt-10 space-y-1 mb-4">
+                  <span className="  leading-5">{item.title || item.name}</span>
+                  <span className="text-[14px] opacity-50">
+                    {dayjs(item.release_date || item.first_air_date).format(
+                      "MMM D, YYYY"
+                    )}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="flex gap-2 overflow-y-hidden -mr-5 -ml-5 py-5 ">
+          {skItem()}
+          {skItem()}
+          {skItem()}
+          {skItem()}
+          {skItem()}
+        </div>
+      )}
     </div>
   );
 };

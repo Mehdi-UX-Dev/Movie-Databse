@@ -7,7 +7,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white relative px-12 ">
+    <footer className="bg-black text-white relative px-12 py-6">
       <ul className="list-none flex items-center justify-center gap-4 mb-5 ">
         <li className="transition-all ease-in duration-300 cursor-pointer text-[12px] hover:text-pink-500">
           Terms Of Use

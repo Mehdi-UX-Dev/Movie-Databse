@@ -44,11 +44,5 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     genresCall();
   }, []);
 
-  return (
-    <div className="bg-[#04152d]  ">
-      <Header />
-      {children}
-      <Footer/>
-    </div>
-  );
+  return <div>{children}</div>;
 }

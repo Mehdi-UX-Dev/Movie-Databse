@@ -6,7 +6,7 @@ const Genres = ({ data }: any) => {
   const { genres } = useAppSelector((state) => state.home);
 
   return (
-    <div className="flex flex-wrap gap-1 absolute right-0 bottom-0 mr-1 mb-2">
+    <div className="flex flex-wrap max-w-[120px] justify-end items-center gap-1 absolute right-0 bottom-5 mr-4 ">
       {data?.map((g: any) => {
         if (!genres[g]?.name) return;
         return (
