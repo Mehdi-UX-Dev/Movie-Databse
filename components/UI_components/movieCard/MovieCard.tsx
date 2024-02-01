@@ -48,9 +48,9 @@ const MovieCard = ({
             </React.Fragment>
           )}
         </div>
-        <div className="text-white flex flex-col space-y-1">
-          <span className="title">{data.title || data.name}</span>
-          <span className="date">
+        <div className="text-white flex flex-col space-y-1 ">
+          <span className="max-w-[20ch] font-bold text-[18px]">{data.title || data.name}</span>
+          <span className="text-gray-500 text-[14px]">
             {dayjs(data.release_date).format("MMM D, YYYY")}
           </span>
         </div>

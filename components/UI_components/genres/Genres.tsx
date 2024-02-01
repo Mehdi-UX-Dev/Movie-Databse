@@ -1,12 +1,18 @@
-import React from "react";
-
 import { useAppSelector } from "@/redux/hooks";
+import { usePathname } from "next/navigation";
 
 const Genres = ({ data }: any) => {
   const { genres } = useAppSelector((state) => state.home);
+  const path = usePathname();
 
   return (
-    <div className="flex flex-wrap max-w-[120px] justify-end items-center gap-1 absolute right-0 bottom-5 mr-4 ">
+    <div
+      className={`flex flex-wrap justify-end items-center gap-1 absolute mr-4   ${
+        path.startsWith("/movie") || path.startsWith("/tv")
+          ? " mt-2    "
+          : "right-0 bottom-5"
+      }`}
+    >
       {data?.map((g: any) => {
         if (!genres[g]?.name) return;
         return (
