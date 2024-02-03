@@ -20,7 +20,6 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
   const { data, loading } = useFetch(`/${mediaType}/${id}`);
 
   const { url } = useAppSelector((state) => state.home);
-  console.log(url?.backdrop);
 
   const _genres = data?.genres?.map((g: any) => g.id);
 
@@ -49,17 +48,16 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                   fill
                   className="object-cover object-center  "
                 />
-
-                <div className="bg-black bg-opacity-40 backdrop-blur-sm   w-full h-full absolute bottom-0 left-0 "></div>
+                <div className="bg-black bg-opacity-40 backdrop-blur-sm  w-full h-full absolute bottom-0 left-0 "></div>
               </div>
               <div className="pt-20 max-w-6xl mx-auto flex gap-8  ">
                 <div className="">
                   {data.poster_path ? (
                     <Image
-                      className="rounded"
+                      className="rounded-lg z-20"
                       src={url?.backdrop + data.poster_path}
                       alt=""
-                      width={450}
+                      width={350}
                       height={450}
                     />
                   ) : (
@@ -72,17 +70,20 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                     />
                   )}
                 </div>
-                <div className="text-white">
+                <div className="text-white z-10">
                   <div className="text-[2rem] font-bold ">
                     {`${data.name || data.title} (${dayjs(
                       data?.release_date
                     ).format("YYYY")})`}
                   </div>
-                  <div className="text-[1.25rem] ">{data.tagline}</div>
+                  <div className="text-[1.25rem] text-gray-400 ">
+                    {data.tagline}
+                  </div>
 
-                  <Genres data={_genres} />
-
-                  <div className="row">
+                  <div className="mt-2">
+                    <Genres data={_genres} />
+                  </div>
+                  <div className=" mt-16 flex items-center gap-8">
                     <CircleRating rating={data.vote_average.toFixed(1)} />
                     <div
                       className="playbtn"
@@ -91,35 +92,37 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                         setVideoId(video.key);
                       }}
                     >
-                      <PlayIcon />
-                      {/* <span className="text">Watch Trailer</span> */}
+                      <div className="flex items-center gap-2">
+                        <PlayIcon />
+                        <span className="text-white">Watch Trailer</span>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="overview">
-                    <div className="heading">Overview</div>
-                    <div className="description">{data.overview}</div>
+                  <div className="max-w-3xl">
+                    <div className="text-[1.5rem] ">Overview</div>
+                    <div className="">{data.overview}</div>
                   </div>
 
-                  <div className="info">
+                  <div className="flex gap-4 border-b border-gray-600 pb-2 mt-4">
                     {data.status && (
-                      <div className="infoItem">
-                        <span className="text bold">Status: </span>
-                        <span className="text">{data.status}</span>
+                      <div className="">
+                        <span className="font-bold">Status: </span>
+                        <span className="text-gray-500">{data.status}</span>
                       </div>
                     )}
                     {data.release_date && (
                       <div className="infoItem">
-                        <span className="text bold">Release Date: </span>
-                        <span className="text">
+                        <span className="font-bold ">Release Date: </span>
+                        <span className="text-gray-500">
                           {dayjs(data.release_date).format("MMM D, YYYY")}
                         </span>
                       </div>
                     )}
                     {data.runtime && (
                       <div className="infoItem">
-                        <span className="text bold">Runtime: </span>
-                        <span className="text">
+                        <span className="font-bold">Runtime: </span>
+                        <span className="text-gray-500">
                           {toHoursAndMinutes(data.runtime)}
                         </span>
                       </div>
@@ -127,9 +130,9 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                   </div>
 
                   {director?.length > 0 && (
-                    <div className="info">
-                      <span className="text bold">Director: </span>
-                      <span className="text">
+                    <div className=" border-b border-gray-600 pb-2">
+                      <span className="font-bold">Director: </span>
+                      <span className="text-gray-500">
                         {director?.map((d: any, i: any) => (
                           <span key={i}>
                             {d.name}
@@ -141,9 +144,9 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                   )}
 
                   {writer?.length > 0 && (
-                    <div className="info">
-                      <span className="text bold">Writer: </span>
-                      <span className="text">
+                    <div className="border-b border-gray-600 pb-2">
+                      <span className="font-bold">Writer: </span>
+                      <span className="text-gray-500">
                         {writer?.map((d: any, i: any) => (
                           <span key={i}>
                             {d.name}
@@ -155,9 +158,9 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                   )}
 
                   {data?.created_by?.length > 0 && (
-                    <div className="info">
-                      <span className="text bold">Creator: </span>
-                      <span className="text">
+                    <div className=" border-b border-gray-600 pb-2">
+                      <span className="font-bold">Creator: </span>
+                      <span className="text-gray-500">
                         {data?.created_by?.map((d: any, i: any) => (
                           <span key={i}>
                             {d.name}
