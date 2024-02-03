@@ -75,7 +75,7 @@ const Carousel = ({
         onClick={() => navigation("right")}
       />
       {!loading ? (
-        <div className=" flex gap-3  " ref={carouselContainer}>
+        <div className="flex gap-3" ref={carouselContainer}>
           {data?.slice(0, 4)?.map((item: any) => {
             const posterUrl = poster
               ? poster + item.poster_path
@@ -89,12 +89,12 @@ const Carousel = ({
                   push(`/${item.media_type || endpoint}/${item.id}`)
                 }
               >
-                <div className="relative  aspect-[1/1.5] ">
+                <div className="relative aspect-[1/1.5] ">
                   <Image
                     src={posterUrl}
                     alt=""
                     width={450}
-                    height={450}
+                    height={350}
                     placeholder="blur"
                     blurDataURL={`${posterUrl}`}
                     className="object-cover rounded-2xl"
