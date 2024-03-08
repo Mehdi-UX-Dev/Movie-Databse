@@ -9,7 +9,6 @@ export default function Home() {
       <HeroBanner />
       <Trending />
       <Popular />
-      
       <TopRated />
     </main>
   );
