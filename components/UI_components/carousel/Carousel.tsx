@@ -6,7 +6,7 @@ import {
 } from "react-icons/bs";
 import dayjs from "dayjs";
 
-import PosterFallback from "../../../public/assets/no-poster.png";
+import PosterFallback from "@/public/assets/no-poster.png";
 import CircleRating from "../circleRating/CircleRating";
 import Genres from "../genres/Genres";
 
@@ -101,7 +101,7 @@ const Carousel = ({
                   <CircleRating rating={item.vote_average.toFixed(1)} />
                   <Genres data={item.genre_ids.slice(0, 2)} />
                 </div>
-                <div className="text-white flex flex-col mt-10 space-y-1 mb-4">
+                <div className="text-white flex flex-col mt-1 space-y-1">
                   <span className="  leading-5">{item.title || item.name}</span>
                   <span className="text-[14px] opacity-50">
                     {dayjs(item.release_date || item.first_air_date).format(

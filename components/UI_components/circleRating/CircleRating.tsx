@@ -8,9 +8,9 @@ const CircleRating = ({ rating }: { rating: number }) => {
   return (
     <div
       className={cx(
-        " rounded-[50%] p-1 text-2xl  font-bold  stroke-transparen  ",
+        " rounded-[50%] p-1 text-2xl  font-bold  stroke-transparent  ",
         {
-          " absolute -bottom-2 bg-white w-14 h-14": path.startsWith("/Home"),
+          "absolute bottom-5 left-2 bg-white w-14 h-14": path.startsWith("/"),
           "w-20 absolute -bottom-4":
             path.startsWith("/tv") || path.startsWith("/movie"),
         }

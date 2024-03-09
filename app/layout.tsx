@@ -5,6 +5,7 @@ import { StoreProvider } from "@/redux";
 
 import Header from "@/components/UI_components/header/Header";
 import Footer from "@/components/UI_components/footer/Footer";
+import useApiTrigger from "@/hooks/ApiTrigger";
 
 // export const metadata: Metadata = {
 //   title: "Movie Time",

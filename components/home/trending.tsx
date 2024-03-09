@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Carousel from "../UI_components/carousel/Carousel";
 import SwitchTabs from "../UI_components/switchTabs/SwitchTabs";
 
-import useFetch from "../../hooks/useFetch";
+import useFetch from "@/hooks/useFetch";
 
 const Trending = () => {
   const [endpoint, setEndpoint] = useState("day");
