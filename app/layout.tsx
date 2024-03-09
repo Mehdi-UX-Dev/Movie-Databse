@@ -2,9 +2,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { StoreProvider } from "@/redux";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useParams, usePathname } from "next/navigation";
+
+import Header from "@/components/UI_components/header/Header";
+import Footer from "@/components/UI_components/footer/Footer";
 
 // export const metadata: Metadata = {
 //   title: "Movie Time",
@@ -16,16 +16,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const path = usePathname();
-  const { replace } = useRouter();
-  useEffect(() => {
-    path === "/" && replace("/Home");
-  });
-
   return (
     <html lang="en">
       <body className="bg-[#04152d]">
+        <Header />
         <StoreProvider>{children}</StoreProvider>
+        <Footer />
       </body>
     </html>
   );
