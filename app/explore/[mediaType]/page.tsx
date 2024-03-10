@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Select from "react-select";
 
@@ -37,14 +37,14 @@ const Explore = () => {
 
   console.log(data);
 
-  const fetchInitialData = () => {
+  const fetchInitialData = useCallback(() => {
     setLoading(true);
     fetchDataFromApi(`/discover/${mediaType}`, filters).then((res) => {
       setData(res);
       setPageNum((prev) => prev + 1);
       setLoading(false);
     });
-  };
+  }, [mediaType]);
 
   const fetchNextPageData = () => {
     fetchDataFromApi(`/discover/${mediaType}?page=${pageNum}`, filters).then(
@@ -69,7 +69,7 @@ const Explore = () => {
     setSortby(null);
     setGenre(null);
     fetchInitialData();
-  }, [mediaType]);
+  }, [mediaType, fetchInitialData]);
 
   const onChange = (selectedItems: any, action: any) => {
     if (action.name === "sortby") {

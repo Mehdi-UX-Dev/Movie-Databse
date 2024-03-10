@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import dayjs from "dayjs";
 
 import CircleRating from "../circleRating/CircleRating";
 import Genres from "../genres/Genres";
 import PosterFallback from "../../../public/assets/no-poster.png";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { fetchApiConfig } from "@/redux/homeSlice";
 
 const MovieCard = ({
   data,
@@ -18,11 +19,17 @@ const MovieCard = ({
   mediaType?: any;
 }) => {
   const { url } = useAppSelector((state) => state.home);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchApiConfig());
+  }, [dispatch]);
 
   const { push } = useRouter();
   const posterUrl = data.poster_path
     ? url.poster + data.poster_path
     : PosterFallback;
+
+  console.log(data);
 
   return (
     url.poster && (
@@ -49,7 +56,9 @@ const MovieCard = ({
           )}
         </div>
         <div className="text-white flex flex-col space-y-1 ">
-          <span className="max-w-[20ch] font-bold text-[18px]">{data.title || data.name}</span>
+          <span className="max-w-[20ch] font-bold text-[18px]">
+            {data.title || data.name}
+          </span>
           <span className="text-gray-500 text-[14px]">
             {dayjs(data.release_date).format("MMM D, YYYY")}
           </span>

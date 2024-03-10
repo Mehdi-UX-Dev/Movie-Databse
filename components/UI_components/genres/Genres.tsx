@@ -1,9 +1,15 @@
-import { useAppSelector } from "@/redux/hooks";
+import { fetchApiConfig, genresCall } from "@/redux/homeSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 const Genres = ({ data }: any) => {
   const { genres } = useAppSelector((state) => state.home);
   const path = usePathname();
+
+  // console.log(data);
+
+  // console.log(genres);
 
   return (
     <div
@@ -14,13 +20,16 @@ const Genres = ({ data }: any) => {
       }`}
     >
       {data?.map((g: any) => {
-        if (!genres[g]?.name) return;
+        const genre = genres.find(
+          (obj: { id: number; name: string }) => obj.id === g
+        );
+
         return (
           <div
             key={g}
             className="bg-blue-500 px-1 py-1 text-[12px] rounded-md text-white whitespace-nowrap"
           >
-            {genres[g]?.name}
+            {genre.name}
           </div>
         );
       })}

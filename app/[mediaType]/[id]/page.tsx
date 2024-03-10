@@ -7,6 +7,9 @@ import Similar from "@/components/detail/Similar";
 import Recommendation from "@/components/detail/Recommendation";
 import { useParams } from "next/navigation";
 import useFetch from "@/hooks/useFetch";
+import { useAppDispatch } from "@/redux/hooks";
+import { useEffect } from "react";
+import { fetchApiConfig } from "@/redux/homeSlice";
 
 function Detail() {
   const { mediaType, id } = useParams();
@@ -17,7 +20,7 @@ function Detail() {
   return (
     <div>
       <DetailsBanner video={data?.results?.[0]} crew={credits?.crew} />
-      {/* <Cast data={credits?.cast} loading={creditsLoading} /> */}
+      <Cast data={credits?.cast} loading={creditsLoading} />
       {/* <VideosSection data={data} loading={loading} /> */}
       {/* <Similar mediaType={mediaType} id={id} /> */}
       {/* <Recommendation mediaType={mediaType} id={id} /> */}
