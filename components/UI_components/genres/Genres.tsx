@@ -7,8 +7,6 @@ const Genres = ({ data }: any) => {
   const { genres } = useAppSelector((state) => state.home);
   const path = usePathname();
 
-  // console.log(data);
-
   // console.log(genres);
 
   return (
@@ -20,9 +18,11 @@ const Genres = ({ data }: any) => {
       }`}
     >
       {data?.map((g: any) => {
-        const genre = genres.find(
-          (obj: { id: number; name: string }) => obj.id === g
-        );
+        console.log(genres);
+
+        const genre =
+          Array.isArray(genres) &&
+          genres?.find((obj: { id: number; name: string }) => obj.id === g);
 
         return (
           <div
