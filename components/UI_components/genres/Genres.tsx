@@ -14,8 +14,6 @@ const Genres = ({ data }: any) => {
       }`}
     >
       {data?.map((g: any) => {
-        console.log(genres);
-
         const genre =
           Array.isArray(genres) &&
           genres?.find((obj: { id: number; name: string }) => obj.id === g);

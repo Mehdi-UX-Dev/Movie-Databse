@@ -35,8 +35,6 @@ const Explore = () => {
 
   const { data: genresData } = useFetch(`/genre/${mediaType}/list`);
 
-  console.log(data);
-
   const fetchInitialData = useCallback(() => {
     setLoading(true);
     fetchDataFromApi(`/discover/${mediaType}`, filters).then((res) => {

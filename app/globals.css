@@ -2,11 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-.inputAnimate {
-  animation: inputAnimation 1s ease-in-out;
+.openAnimate {
+  animation: openAnimation 1s ease-in-out;
 }
 
-@keyframes inputAnimation {
+.closeAnimate {
+  animation: closeAnimation 1s ease-in-out forwards;
+}
+
+@keyframes openAnimation {
   from {
     transform: translateY(-20px);
     opacity: 0;
@@ -15,5 +19,17 @@
   to {
     transform: translateY(0px);
     opacity: 1;
+  }
+}
+
+@keyframes closeAnimation {
+  from {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(-20px);
+    opacity: 0;
   }
 }
