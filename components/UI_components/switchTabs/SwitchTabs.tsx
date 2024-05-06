@@ -27,7 +27,7 @@ const SwitchTabs = ({ data, onTabChange }: any) => {
           </span>
         ))}
         <span
-          className="h-[30px] w-[100px] rounded-2xl bg-gradient-to-r from-[#f89e00] to-[#da2f68] absolute left-0 transition-all duration-400 ease-[cubic-bezier(0.88,-0.35,0.565,1.35)] "
+          className="h-[30px] w-[100px] rounded-2xl bg-gradient-to-r from-[#21B1CA] to-[#424DE0] absolute left-0 transition-all duration-400 ease-[cubic-bezier(0.88,-0.35,0.565,1.35)] "
           style={{ left }}
         />
       </div>

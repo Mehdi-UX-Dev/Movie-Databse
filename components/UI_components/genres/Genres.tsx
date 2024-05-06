@@ -1,13 +1,9 @@
-import { fetchApiConfig, genresCall } from "@/redux/homeSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from "@/redux/hooks";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
 
 const Genres = ({ data }: any) => {
   const { genres } = useAppSelector((state) => state.home);
   const path = usePathname();
-
-  // console.log(genres);
 
   return (
     <div
@@ -29,7 +25,7 @@ const Genres = ({ data }: any) => {
             key={g}
             className="bg-blue-500 px-1 py-1 text-[12px] rounded-md text-white whitespace-nowrap"
           >
-            {genre.name}
+            {genre?.name}
           </div>
         );
       })}

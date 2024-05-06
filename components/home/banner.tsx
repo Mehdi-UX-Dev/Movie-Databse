@@ -59,7 +59,7 @@ const HeroBanner = () => {
             onKeyUp={searchQueryHandler}
             className="w-[calc(100%-150px)] h-14 text-xl py-7 bg-white outline-0 border-0 rounded-l-3xl text-black pl-4  "
           />
-          <button className="text-lg w-[150px] h-14 bg-gradient-to-r from-[#f89e00] to-[#da2f68] text-white border-0 outline-0 rounded-r-3xl">
+          <button className="text-lg w-[150px] h-14 bg-gradient-to-r from-[#21B1CA] to-[#424DE0] text-white border-0 outline-0 rounded-r-3xl">
             Search
           </button>
         </div>

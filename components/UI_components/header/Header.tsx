@@ -3,10 +3,12 @@ import { HiOutlineSearch } from "react-icons/hi";
 import { SlMenu } from "react-icons/sl";
 import { VscChromeClose } from "react-icons/vsc";
 
-import ContentWrapper from "../contentWrapper/ContentWrapper";
-import logo from "../../../public/assets/movix-logo.svg";
+import logo from "../../../public/logo.png";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import { PiTelevisionBold } from "react-icons/pi";
+import { RiMovie2Line } from "react-icons/ri";
 
 const Header = () => {
   const [show, setShow] = useState("top");
@@ -63,40 +65,38 @@ const Header = () => {
     setShowSearch(false);
   };
 
-  const navigationHandler = (type: string) => {
-    if (type === "movie") {
-      push("/explore/movie");
-    } else {
-      push("/explore/tv");
-    }
-    setMobileMenu(false);
-  };
-
   return (
     <header
-      className={`fixed translate-y-0 z-10 bg-black bg-opacity-25  h-16  backdrop-blur-sm    w-full   `}
+      className={`fixed translate-y- z-10 bg-[#0A325C] bg-opacity-50  h-24  backdrop-blur-sm  w-full`}
     >
-      <div className="flex justify-between items-center max-w-6xl h-full mx-auto">
-        <div className="cursor-pointer  " onClick={() => push("/")}>
-          <Image src={logo} alt="logo" height={150} width={150} className="" />
+      <div className="flex items-center max-w-6xl h-full mx-auto">
+        <div className="cursor-pointer" onClick={() => push("/")}>
+          <Image src={logo} alt="logo" height={150} width={200} />
         </div>
-        <ul className="list-none hidden md:flex items-center space-x-4 ">
-          <li
-            className=" text-white cursor-pointer hover:text-pink-500"
-            onClick={() => navigationHandler("movie")}
-          >
-            Movies
-          </li>
-          <li
-            className=" text-white cursor-pointer hover:text-pink-500"
-            onClick={() => navigationHandler("tv")}
-          >
-            TV Shows
-          </li>
-          <li className=" text-white cursor-pointer hover:text-pink-500 ">
-            <HiOutlineSearch onClick={openSearch} />
-          </li>
-        </ul>
+
+        <div className="flex grow justify-center">
+          <div className="flex  text-white items-center gap-8 rounded-full bg-gray-950 py-4 px-16">
+            <div className="flex items-center gap-2 hover:bg-[#21B1CA] hover:py-2 hover:px-4 transition-all cursor-pointer ease-in-out duration-300 hover:rounded-full hover:text-gray-950">
+              <PiTelevisionBold size={24} />
+              <Link className="text-[1.25rem]" href={"/explore/movie"}>
+                Movie
+              </Link>
+            </div>
+            <div className="flex items-center gap-2 hover:bg-[#21B1CA] hover:py-2 hover:px-4 transition-all cursor-pointer ease-in-out duration-300 hover:rounded-full hover:text-gray-950">
+              <RiMovie2Line size={24} />
+              <Link className="text-[1.25rem]" href={"/explore/tv"}>
+                TV Shows
+              </Link>
+            </div>
+            <div
+              onClick={openSearch}
+              className="flex items-center gap-2 hover:bg-[#21B1CA] hover:py-2 hover:px-4 transition-all cursor-pointer ease-in-out duration-300 hover:rounded-full hover:text-gray-950"
+            >
+              <HiOutlineSearch size={24} />
+              <p className="text-[1.25rem]">Search</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="flex items-center gap-5 md:hidden">

@@ -33,22 +33,6 @@ const Carousel = ({
 
   const { push } = useRouter();
   const path = usePathname();
-  const navigation = (dir: string) => {
-    const container = carouselContainer.current;
-
-    const scrollAmount =
-      container &&
-      (dir === "left"
-        ? container.scrollLeft - (container.offsetWidth + 20)
-        : container.scrollLeft + (container.offsetWidth + 20));
-
-    container &&
-      container.scrollTo({
-        left: scrollAmount,
-        behavior: "smooth",
-      });
-  };
-
   const skItem = () => {
     return (
       <div className="animate-pulse flex flex-col gap-4  ">
@@ -64,14 +48,7 @@ const Carousel = ({
       {title && (
         <div className="text-[1.5rem] text-white mb-[1.25rem]">{title}</div>
       )}
-      <BsFillArrowLeftCircleFill
-        className="left-[30px] text-[1.75rem] absolute top-[44%] cursor-pointer translate-y-[-50%] opacity-50 z-10 hover:opacity-80 "
-        onClick={() => navigation("left")}
-      />
-      <BsFillArrowRightCircleFill
-        className="right-[30px] text-[1.75rem] absolute top-[44%] cursor-pointer translate-y-[-50%] opacity-50 z-10 hover:opacity-80"
-        onClick={() => navigation("right")}
-      />
+
       {!loading ? (
         <div className="flex gap-3" ref={carouselContainer}>
           {data?.slice(0, 4)?.map((item: any) => {
