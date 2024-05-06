@@ -17,7 +17,7 @@ const TopRated = () => {
 
   return (
     <div className="max-w-6xl mx-auto ">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center px-8 lg:px-0">
         <span className="text-white text-[1.5rem]">Top Rated</span>
         <SwitchTabs data={["Movies", "TV Shows"]} onTabChange={onTabChange} />
       </div>

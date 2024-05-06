@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 import { SlMenu } from "react-icons/sl";
-import { VscChromeClose } from "react-icons/vsc";
+import { VscChromeClose, VscThreeBars } from "react-icons/vsc";
 
 import logo from "../../../public/logo.png";
 import Image from "next/image";
@@ -67,14 +67,16 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed translate-y- z-10 bg-[#0A325C] bg-opacity-50  h-24  backdrop-blur-sm  w-full`}
+      className={`px-4 fixed z-10 bg-[#0A325C] bg-opacity-50  h-24  backdrop-blur-sm w-full`}
     >
-      <div className="flex items-center max-w-6xl h-full mx-auto">
+      <div className="flex justify-between lg:justify-normal items-center max-w-6xl h-full mx-auto">
         <div className="cursor-pointer" onClick={() => push("/")}>
-          <Image src={logo} alt="logo" height={150} width={200} />
+          <Image src={logo} className="w-32" alt="logo" />
         </div>
 
-        <div className="flex grow justify-center">
+        <VscThreeBars className="lg:hidden text-white" size={48} />
+
+        <div className="hidden lg:flex grow justify-center">
           <div className="flex  text-white items-center gap-8 rounded-full bg-gray-950 py-4 px-16">
             <div className="flex items-center gap-2 hover:bg-[#21B1CA] hover:py-2 hover:px-4 transition-all cursor-pointer ease-in-out duration-300 hover:rounded-full hover:text-gray-950">
               <PiTelevisionBold size={24} />
@@ -99,14 +101,6 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="flex items-center gap-5 md:hidden">
-        <HiOutlineSearch onClick={openSearch} />
-        {mobileMenu ? (
-          <VscChromeClose onClick={() => setMobileMenu(false)} />
-        ) : (
-          <SlMenu onClick={openMobileMenu} />
-        )}
-      </div>
       {showSearch && (
         <div className="relativ">
           <div className="relative inputAnimate">

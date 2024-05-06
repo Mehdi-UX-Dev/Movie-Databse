@@ -29,8 +29,6 @@ const MovieCard = ({
     ? url.poster + data.poster_path
     : PosterFallback;
 
-  console.log(data);
-
   return (
     url.poster && (
       <div

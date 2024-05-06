@@ -46,11 +46,14 @@ const Carousel = ({
   return (
     <div className="w-full">
       {title && (
-        <div className="text-[1.5rem] text-white mb-[1.25rem]">{title}</div>
+        <div className="text-[1.5rem] text-white mb-[1.25rem] ">{title}</div>
       )}
 
       {!loading ? (
-        <div className="flex gap-3" ref={carouselContainer}>
+        <div
+          className="flex flex-col lg:flex-row lg:gap-3 gap-8 px-8 lg:px-0"
+          ref={carouselContainer}
+        >
           {data?.slice(0, 4)?.map((item: any) => {
             const posterUrl = poster
               ? poster + item.poster_path
@@ -72,7 +75,7 @@ const Carousel = ({
                     height={path === "/Home" ? 450 : 250}
                     placeholder="blur"
                     blurDataURL={`${posterUrl}`}
-                    className="object-cover rounded-2xl"
+                    className="object-cover rounded-2xl w-full h-full"
                   />
 
                   <CircleRating rating={item.vote_average.toFixed(1)} />

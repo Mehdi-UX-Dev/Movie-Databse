@@ -46,20 +46,20 @@ const HeroBanner = () => {
 
       <div className="w-full h-full bg-gradient-to-b absolute bottom-0 left-0 from-[rgba(4,21,45,0)0%] to-[#04152d_100%]"></div>
 
-      <div className="flex flex-col text-white text-center max-w-[880px] relative mx-auto  ">
-        <span className="text-7xl font-bold ">Welcome.</span>
-        <span className="text-2xl mb-4">
+      <div className="flex flex-col  text-white text-center max-w-[880px] relative mx-auto  ">
+        <span className="text-[3rem] lg:text-7xl font-bold ">Welcome.</span>
+        <span className="lg:text-2xl mb-4">
           Millions of movies, TV shows and people to discover. Explore now.
         </span>
-        <div className="flex items-center w-full justify-center">
+        <div className="flex flex-col lg:flex-row px-4 lg:px-0 gap-4 lg:gap-0 w-full justify-center">
           <input
             type="text"
             placeholder="Search for a movie or tv show...."
             onChange={(e) => setQuery(e.target.value)}
             onKeyUp={searchQueryHandler}
-            className="w-[calc(100%-150px)] h-14 text-xl py-7 bg-white outline-0 border-0 rounded-l-3xl text-black pl-4  "
+            className="lg:w-[calc(100%-150px)] h-14 text-xl py-7 bg-white outline-0 border-0 lg:rounded-l-3xl text-black pl-4 rounded-3xl lg:rounded-none  "
           />
-          <button className="text-lg w-[150px] h-14 bg-gradient-to-r from-[#21B1CA] to-[#424DE0] text-white border-0 outline-0 rounded-r-3xl">
+          <button className="text-lg lg:w-[150px] h-14 bg-gradient-to-r from-[#21B1CA] to-[#424DE0] text-white border-0 outline-0 lg:rounded-r-3xl rounded-3xl lg:rounded-none ">
             Search
           </button>
         </div>
