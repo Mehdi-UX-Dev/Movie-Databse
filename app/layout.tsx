@@ -15,7 +15,7 @@ export default function RootLayout({
       <body className="bg-[#04152d]">
         <Header />
         <StoreProvider>{children}</StoreProvider>
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

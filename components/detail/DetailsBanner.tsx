@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 
 import useFetch from "@/hooks/useFetch";
-import Genres from "@/components/UI_components/genres/Genres";
 import CircleRating from "@/components/UI_components/circleRating/CircleRating";
 import PosterFallback from "@/public/assets/no-poster.png";
 import { PlayIcon } from "./Playbtn";
@@ -12,8 +11,11 @@ import { useParams } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Image from "next/image";
 import { fetchApiConfig, genresCall } from "@/redux/homeSlice";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 
 const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
+  const { genres } = useAppSelector((state) => state.home);
+
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchApiConfig());
@@ -47,7 +49,7 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
         <>
           {data && url?.backdrop && (
             <>
-              <div className="w-full h-screen  absolute top-0 left-0 overflow-hidden opacity-50 ">
+              <div className="w-full h-full  absolute top-0 left-0 overflow-hidden opacity-75   ">
                 <Image
                   src={url.backdrop + data.backdrop_path}
                   alt=""
@@ -56,11 +58,11 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                 />
                 <div className="bg-black bg-opacity-40 backdrop-blur-sm  w-full h-full absolute bottom-0 left-0 "></div>
               </div>
-              <div className="pt-20 max-w-6xl mx-auto flex gap-8  ">
+              <div className="pt-40  max-w-6xl mx-auto flex gap-8  ">
                 <div className="z-10">
                   {data.poster_path ? (
                     <Image
-                      className="rounded-lg"
+                      className="rounded-lg hidden md:block"
                       src={url?.backdrop + data.poster_path}
                       alt=""
                       width={350}
@@ -86,10 +88,45 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                     {data.tagline}
                   </div>
                   <div id="find" className="mt-2">
-                    <Genres data={_genres} />
+                    <div
+                      className={`flex flex-wrap justify-end items-center gap-1 absolute mr-4 `}
+                    >
+                      {_genres?.map((g: any) => {
+                        const genre =
+                          Array.isArray(genres) &&
+                          genres?.find(
+                            (obj: { id: number; name: string }) => obj.id === g
+                          );
+
+                        return (
+                          <div
+                            key={g}
+                            className="bg-blue-500 px-1 py-1 text-[12px] rounded-md text-white whitespace-nowrap"
+                          >
+                            {genre?.name}
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                   <div className=" mt-16 flex items-center gap-8">
-                    {/* <CircleRating rating={data.vote_average.toFixed(1)} /> */}
+                    <div className=" rounded-[50%] p-1 text-2xl bg-white  w-16 h-16 font-bold  stroke-transparent  ">
+                      <CircularProgressbar
+                        value={data.vote_average.toFixed(1)}
+                        maxValue={10}
+                        text={data.vote_average.toFixed(1).toString()}
+                        styles={buildStyles({
+                          pathColor:
+                            data.vote_average.toFixed(1) < 5
+                              ? "red"
+                              : data.vote_average.toFixed(1) < 7
+                              ? "orange"
+                              : "green",
+
+                          textSize: 32,
+                        })}
+                      />
+                    </div>
                     <div
                       className="playbtn"
                       onClick={() => {
@@ -113,13 +150,13 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                     {data.status && (
                       <div className="">
                         <span className="font-bold">Status: </span>
-                        <span className="text-gray-500">{data.status}</span>
+                        <span>{data.status}</span>
                       </div>
                     )}
                     {data.release_date && (
                       <div className="infoItem">
                         <span className="font-bold ">Release Date: </span>
-                        <span className="text-gray-500">
+                        <span>
                           {dayjs(data.release_date).format("MMM D, YYYY")}
                         </span>
                       </div>
@@ -127,9 +164,7 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                     {data.runtime && (
                       <div className="infoItem">
                         <span className="font-bold">Runtime: </span>
-                        <span className="text-gray-500">
-                          {toHoursAndMinutes(data.runtime)}
-                        </span>
+                        <span>{toHoursAndMinutes(data.runtime)}</span>
                       </div>
                     )}
                   </div>
@@ -137,7 +172,7 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                   {director?.length > 0 && (
                     <div className=" border-b border-gray-600 pb-2">
                       <span className="font-bold">Director: </span>
-                      <span className="text-gray-500">
+                      <span>
                         {director?.map((d: any, i: any) => (
                           <span key={i}>
                             {d.name}
@@ -151,7 +186,7 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                   {writer?.length > 0 && (
                     <div className="border-b border-gray-600 pb-2">
                       <span className="font-bold">Writer: </span>
-                      <span className="text-gray-500">
+                      <span>
                         {writer?.map((d: any, i: any) => (
                           <span key={i}>
                             {d.name}
@@ -165,7 +200,7 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                   {data?.created_by?.length > 0 && (
                     <div className=" border-b border-gray-600 pb-2">
                       <span className="font-bold">Creator: </span>
-                      <span className="text-gray-500">
+                      <span>
                         {data?.created_by?.map((d: any, i: any) => (
                           <span key={i}>
                             {d.name}

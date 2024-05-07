@@ -59,21 +59,22 @@ const Header = () => {
           />
         )}
 
+        {/* for mobile */}
         <div
           className={`${
             showNav ? "flex" : "hidden"
-          }  lg:hidden grow justify-center`}
+          }  lg:hidden  justify-center`}
         >
-          <div className="flex  text-white items-center gap-8 rounded-full bg-gray-950 py-4 px-16">
+          <div className="flex   text-white items-center gap-4 rounded-full min-[375px]:bg-gray-950 py-4 min-[375px]:px-8">
             <div className="flex items-center gap-2 hover:bg-[#21B1CA] hover:py-2 hover:px-4 transition-all cursor-pointer ease-in-out duration-300 hover:rounded-full hover:text-gray-950">
-              <PiTelevisionBold size={24} />
+              <PiTelevisionBold className="hidden sm:block" size={24} />
               <Link className="text-[1.25rem]" href={"/explore/movie"}>
                 Movie
               </Link>
             </div>
             <div className="flex items-center gap-2 hover:bg-[#21B1CA] hover:py-2 hover:px-4 transition-all cursor-pointer ease-in-out duration-300 hover:rounded-full hover:text-gray-950">
-              <RiMovie2Line size={24} />
-              <Link className="text-[1.25rem]" href={"/explore/tv"}>
+              <RiMovie2Line className="hidden sm:block" size={24} />
+              <Link className="text-[1.25rem] truncate" href={"/explore/tv"}>
                 TV Shows
               </Link>
             </div>
@@ -86,11 +87,12 @@ const Header = () => {
               }
               className="flex items-center gap-2 hover:bg-[#21B1CA] hover:py-2 hover:px-4 transition-all cursor-pointer ease-in-out duration-300 hover:rounded-full hover:text-gray-950"
             >
-              <HiOutlineSearch size={24} />
+              <HiOutlineSearch size={24} className="hidden sm:block" />
               <p className="text-[1.25rem]">Search</p>
             </div>
           </div>
         </div>
+        {/* for large screens */}
         <div className={`hidden lg:flex  grow justify-center`}>
           <div className="flex  text-white items-center gap-8 rounded-full bg-gray-950 py-4 px-16">
             <div className="flex items-center gap-2 hover:bg-[#21B1CA] hover:py-2 hover:px-4 transition-all cursor-pointer ease-in-out duration-300 hover:rounded-full hover:text-gray-950">

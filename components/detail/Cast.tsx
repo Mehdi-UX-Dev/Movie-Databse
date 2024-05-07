@@ -19,7 +19,7 @@ const Cast = ({ data, loading }: { data: any; loading: any }) => {
     );
   };
   return (
-    <div className="mt-32 max-w-6xl mx-auto  overflow-x-auto">
+    <div className=" max-w-6xl mx-auto  overflow-x-auto">
       <div className="text-white text-[1.5rem]">Top Cast</div>
       {!loading ? (
         <div className="flex items-center gap-10">
