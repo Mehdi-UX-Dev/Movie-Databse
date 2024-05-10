@@ -35,7 +35,7 @@ const Navbar = () => {
     <nav
       className={`px-4 fixed z-10 bg-[#0A325C] bg-opacity-50  h-24  backdrop-blur-sm w-full`}
     >
-      <div className="flex justify-between lg:justify-normal items-center max-w-[100rem] mx-16 h-full">
+      <div className="flex justify-between lg:justify-normal items-center max-w-[100rem] lg:mx-16 h-full">
         {!showNav && (
           <Link href={"/"} className="cursor-pointer lg:hidden">
             <Image src={logo} className="w-32" alt="logo" />

@@ -88,7 +88,7 @@ const Carousel = ({
                     height={400}
                     placeholder="blur"
                     blurDataURL={item.blurHash}
-                    className="object-cover rounded-2xl w-full h-full"
+                    className="object-cover  rounded-2xl w-full h-full"
                   />
 
                   <CircleRating rating={item.vote_average.toFixed(1)} />

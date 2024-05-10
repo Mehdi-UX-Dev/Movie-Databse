@@ -3,15 +3,14 @@ import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 
 import useFetch from "@/hooks/useFetch";
-import CircleRating from "@/components/UI_components/circleRating/CircleRating";
 import PosterFallback from "@/public/assets/no-poster.png";
 import { PlayIcon } from "./Playbtn";
-import VideoPopup from "@/components/UI_components/videoPopup/VideoPopup";
 import { useParams } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Image from "next/image";
 import { fetchApiConfig, genresCall } from "@/redux/homeSlice";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import VideoPopup from "../VideoPopup";
 
 const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
   const { genres } = useAppSelector((state) => state.home);

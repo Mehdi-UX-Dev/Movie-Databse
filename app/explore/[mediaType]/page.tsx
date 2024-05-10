@@ -6,9 +6,9 @@ import Select from "react-select";
 
 import useFetch from "@/hooks/useFetch";
 import { fetchDataFromApi } from "@/utils/api";
-import MovieCard from "@/components/UI_components/movieCard/MovieCard";
-import Spinner from "@/components/UI_components/spinner/Spinner";
 import { useParams } from "next/navigation";
+import Spinner from "@/components/Spinner";
+import MovieCard from "@/components/MovieCard";
 
 let filters: any = {};
 
@@ -24,6 +24,16 @@ const sortbyData = [
   { value: "primary_release_date.asc", label: "Release Date Ascending" },
   { value: "original_title.asc", label: "Title (A-Z)" },
 ];
+
+const skItem = () => {
+  return (
+    <div className="animate-pulse flex flex-col gap-4">
+      <div className="w-32 h-32 bg-blue-950"></div>
+      <div className="w-24 h-4 bg-blue-950"></div>
+      <div className="w-24 h-4 bg-blue-950"></div>
+    </div>
+  );
+};
 
 const Explore = () => {
   const [data, setData] = useState<any>(null);
@@ -94,8 +104,8 @@ const Explore = () => {
   };
 
   return (
-    <div className="pt-20">
-      <div className="flex justify-between items-center max-w-6xl mx-auto ">
+    <div className="pt-40 ">
+      <div className="flex flex-wrap justify-center gap-2 lg:justify-between items-center max-w-7xl mx-auto ">
         <div className="text-white text-[1.5rem]">
           {mediaType === "tv" ? "Explore TV Shows" : "Explore Movies"}
         </div>
@@ -150,28 +160,28 @@ const Explore = () => {
         </div>
       </div>
       {loading && <Spinner />}
-      {!loading && (
-        <div className="max-w-6xl mx-auto">
-          {data?.results?.length > 0 ? (
-            <InfiniteScroll
-              className="flex flex-wrap gap-4 mt-8 "
-              dataLength={data?.results?.length || []}
-              next={fetchNextPageData}
-              hasMore={pageNum <= data?.total_pages}
-              loader={<Spinner />}
-            >
-              {data?.results?.map((item: any, index: any) => {
-                if (item.media_type === "person") return;
-                return (
-                  <MovieCard key={index} data={item} mediaType={mediaType} />
-                );
-              })}
-            </InfiniteScroll>
-          ) : (
-            <span className="resultNotFound">Sorry, Results not found!</span>
-          )}
-        </div>
-      )}
+      <div className="max-w-7xl mx-auto mt-16">
+        {data?.results?.length > 0 ? (
+          <InfiniteScroll
+            className="flex flex-wrap justify-center gap-4 "
+            dataLength={data?.results?.length || []}
+            next={fetchNextPageData}
+            hasMore={pageNum <= data?.total_pages}
+            loader={<Spinner />}
+          >
+            {data?.results?.map((item: any, index: any) => {
+              if (item.media_type === "person") return;
+              return (
+                <MovieCard key={index} data={item} mediaType={mediaType} />
+              );
+            })}
+          </InfiniteScroll>
+        ) : (
+          <div className="flex items-center gap-8 flex-wrap">
+            {Array.from({ length: 20 }, () => skItem())}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

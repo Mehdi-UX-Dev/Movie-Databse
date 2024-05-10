@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import dayjs from "dayjs";
 
-import CircleRating from "../circleRating/CircleRating";
-import Genres from "../genres/Genres";
-import PosterFallback from "../../../public/assets/no-poster.png";
+import PosterFallback from "@/public/assets/no-poster.png";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { fetchApiConfig } from "@/redux/homeSlice";
+import CircleRating from "./CircleRating";
+import Genres from "./Genres";
+import Link from "next/link";
+import { dynamicBlurDataUrl } from "@/dynamicBlurDataUrl";
 
 const MovieCard = ({
   data,
@@ -24,26 +25,34 @@ const MovieCard = ({
     dispatch(fetchApiConfig());
   }, [dispatch]);
 
-  const { push } = useRouter();
   const posterUrl = data.poster_path
     ? url.poster + data.poster_path
     : PosterFallback;
 
+  useEffect(() => {
+    (async () => {
+      const resources = data && {
+        blurHash: await dynamicBlurDataUrl(posterUrl + data.poster_path),
+      };
+      data.blurHash = resources.blurHash;
+    })();
+  }, [data, posterUrl]);
+
   return (
     url.poster && (
-      <div
-        className="cursor-pointer grow space-y-4"
-        onClick={() => push(`/${data.media_type || mediaType}/${data.id}`)}
+      <Link
+        className="cursor-pointer  space-y-4"
+        href={`/${data.media_type || mediaType}/${data.id}`}
       >
         <div className="relative aspect-[1/1.5]">
           <Image
             src={posterUrl}
             className="object-cover rounded-2xl"
             alt=""
-            width={200}
-            height={250}
+            width={300}
+            height={400}
             placeholder="blur"
-            blurDataURL={`${posterUrl}`}
+            blurDataURL={`${data?.blurHash}`}
             loading="lazy"
           />
           {!fromSearch && (
@@ -61,7 +70,7 @@ const MovieCard = ({
             {dayjs(data.release_date).format("MMM D, YYYY")}
           </span>
         </div>
-      </div>
+      </Link>
     )
   );
 };

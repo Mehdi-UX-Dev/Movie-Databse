@@ -17,7 +17,6 @@ const Genres = ({ data }: any) => {
         const genre =
           Array.isArray(genres) &&
           genres?.find((obj: { id: number; name: string }) => obj.id === g);
-
         return (
           <div
             key={g}
