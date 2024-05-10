@@ -2,7 +2,7 @@
 import "./globals.css";
 import { StoreProvider } from "@/redux";
 
-import Header from "@/components/UI_components/header/Header";
+import Navbar from "@/components/UI_components/header/Header";
 import Footer from "@/components/UI_components/footer/Footer";
 
 export default function RootLayout({
@@ -13,9 +13,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-[#04152d]">
-        <Header />
+        <Navbar />
         <StoreProvider>{children}</StoreProvider>
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   );

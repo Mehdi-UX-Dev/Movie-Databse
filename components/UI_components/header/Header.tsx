@@ -10,7 +10,7 @@ import { PiTelevisionBold } from "react-icons/pi";
 import { RiMovie2Line } from "react-icons/ri";
 import { FaX } from "react-icons/fa6";
 
-const Header = () => {
+const Navbar = () => {
   const [query, setQuery] = useState("");
   const [{ showInputBar, closeAnimation }, setShowSearch] = useState<{
     closeAnimation: boolean;
@@ -32,7 +32,7 @@ const Header = () => {
   };
 
   return (
-    <header
+    <nav
       className={`px-4 fixed z-10 bg-[#0A325C] bg-opacity-50  h-24  backdrop-blur-sm w-full`}
     >
       <div className="flex justify-between lg:justify-normal items-center max-w-6xl h-full mx-auto">
@@ -155,8 +155,8 @@ const Header = () => {
           />
         </div>
       )}
-    </header>
+    </nav>
   );
 };
 
-export default Header;
+export default Navbar;

@@ -1,18 +1,13 @@
 "use client";
-import React, { useRef } from "react";
-import {
-  BsFillArrowLeftCircleFill,
-  BsFillArrowRightCircleFill,
-} from "react-icons/bs";
+import React, { useEffect, useRef, useState } from "react";
 import dayjs from "dayjs";
-
 import PosterFallback from "@/public/assets/no-poster.png";
 import CircleRating from "../circleRating/CircleRating";
 import Genres from "../genres/Genres";
-
 import { useAppSelector } from "@/redux/hooks";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import { dynamicBlurDataUrl } from "@/dynamicBlurDataUrl";
 
 const Carousel = ({
   data,
@@ -25,20 +20,40 @@ const Carousel = ({
   endpoint?: string;
   title?: string;
 }) => {
-  const carouselContainer = useRef<HTMLDivElement>(null!);
+  const [imagesSet, setImagesSet] = useState(data);
 
+  useEffect(() => {
+    const modifyData = async () => {
+      const dataWithBlurHash = await getResources(data);
+      setImagesSet(dataWithBlurHash);
+    };
+    modifyData();
+  }, [data]);
+
+  const carouselContainer = useRef<HTMLDivElement>(null!);
   const {
     url: { poster },
   } = useAppSelector((state) => state.home);
 
-  const { push } = useRouter();
-  const path = usePathname();
+  const getResources = async (data: any) => {
+    const resources =
+      data &&
+      (await Promise.all(
+        data?.map(async (item: any) => ({
+          ...item,
+          blurHash: await dynamicBlurDataUrl(poster + item.poster_path),
+        }))
+      ));
+
+    return resources;
+  };
+
   const skItem = () => {
     return (
       <div className="animate-pulse flex flex-col gap-4  ">
-        <div className="w-32 h-32 bg-blue-950 "></div>
-        <div className="w-24 h-4 bg-blue-950 "></div>
-        <div className="w-24 h-4 bg-blue-950  "></div>
+        <div className="w-32 h-32 bg-blue-950"></div>
+        <div className="w-24 h-4 bg-blue-950"></div>
+        <div className="w-24 h-4 bg-blue-950"></div>
       </div>
     );
   };
@@ -54,27 +69,25 @@ const Carousel = ({
           className="flex flex-col lg:flex-row lg:gap-3 gap-8 px-8 lg:px-0"
           ref={carouselContainer}
         >
-          {data?.slice(0, 4)?.map((item: any) => {
+          {imagesSet?.slice(0, 4)?.map((item: any) => {
             const posterUrl = poster
               ? poster + item.poster_path
               : PosterFallback;
 
             return (
-              <div
-                key={item.id}
+              <Link
                 className=" cursor-pointer grow"
-                onClick={() =>
-                  push(`/${item.media_type || endpoint}/${item.id}`)
-                }
+                href={`/${item.media_type || endpoint}/${item.id}`}
+                key={item.id}
               >
                 <div className="relative aspect-[1/1.5] ">
                   <Image
                     src={posterUrl}
                     alt=""
-                    width={path === "/Home" ? 450 : 250}
-                    height={path === "/Home" ? 450 : 250}
+                    width={400}
+                    height={400}
                     placeholder="blur"
-                    blurDataURL={`${posterUrl}`}
+                    blurDataURL={item.blurHash}
                     className="object-cover rounded-2xl w-full h-full"
                   />
 
@@ -89,7 +102,7 @@ const Carousel = ({
                     )}
                   </span>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
