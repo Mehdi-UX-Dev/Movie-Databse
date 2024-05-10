@@ -1,9 +1,9 @@
 "use client";
 
-import HeroBanner from "@/components/home/banner";
-import Popular from "@/components/home/popular";
-import TopRated from "@/components/home/topRated";
-import Trending from "@/components/home/trending";
+import HeroBanner from "@/components/HomePage/banner";
+import Popular from "@/components/HomePage/popular";
+import TopRated from "@/components/HomePage/topRated";
+import Trending from "@/components/HomePage/trending";
 
 import { fetchApiConfig, genresCall } from "@/redux/homeSlice";
 import { useAppDispatch } from "@/redux/hooks";
