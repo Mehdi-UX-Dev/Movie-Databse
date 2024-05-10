@@ -2,12 +2,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import dayjs from "dayjs";
 import PosterFallback from "@/public/assets/no-poster.png";
-import CircleRating from "../circleRating/CircleRating";
-import Genres from "../genres/Genres";
 import { useAppSelector } from "@/redux/hooks";
 import Image from "next/image";
 import Link from "next/link";
 import { dynamicBlurDataUrl } from "@/dynamicBlurDataUrl";
+import CircleRating from "./CircleRating";
+import Genres from "./Genres";
 
 const Carousel = ({
   data,
@@ -50,7 +50,7 @@ const Carousel = ({
 
   const skItem = () => {
     return (
-      <div className="animate-pulse flex flex-col gap-4  ">
+      <div className="animate-pulse flex flex-col gap-4">
         <div className="w-32 h-32 bg-blue-950"></div>
         <div className="w-24 h-4 bg-blue-950"></div>
         <div className="w-24 h-4 bg-blue-950"></div>
@@ -66,7 +66,7 @@ const Carousel = ({
 
       {!loading ? (
         <div
-          className="flex flex-col lg:flex-row lg:gap-3 gap-8 px-8 lg:px-0"
+          className="flex flex-col lg:flex-row lg:gap-6 gap-8 px-8 lg:px-0"
           ref={carouselContainer}
         >
           {imagesSet?.slice(0, 4)?.map((item: any) => {
@@ -94,9 +94,9 @@ const Carousel = ({
                   <CircleRating rating={item.vote_average.toFixed(1)} />
                   <Genres data={item.genre_ids.slice(0, 2)} />
                 </div>
-                <div className="text-white flex flex-col mt-1 space-y-1">
-                  <span className="  leading-5">{item.title || item.name}</span>
-                  <span className="text-[14px] opacity-50">
+                <div className="text-white text-[1.5rem] mt-2 flex flex-col  gap-1">
+                  <span className="">{item.title || item.name}</span>
+                  <span className="text-gray-400 ">
                     {dayjs(item.release_date || item.first_air_date).format(
                       "MMM D, YYYY"
                     )}

@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import Carousel from "../UI_components/carousel/Carousel";
-import SwitchTabs from "../UI_components/switchTabs/SwitchTabs";
 
 import useFetch from "@/hooks/useFetch";
+import SwitchTabs from "../SwitchTabs";
+import Carousel from "../Carousel";
 
 const Trending = () => {
   const [endpoint, setEndpoint] = useState("day");
@@ -15,7 +15,7 @@ const Trending = () => {
   };
 
   return (
-    <div className=" max-w-6xl mx-auto mb-8 ">
+    <div className=" max-w-7xl mx-auto mb-16 ">
       <div className="flex justify-between items-center mb-8 px-8 lg:px-0">
         <span className="text-[1.5rem]   text-white">Trending</span>
         <SwitchTabs data={["Day", "Week"]} onTabChange={onTabChange} />

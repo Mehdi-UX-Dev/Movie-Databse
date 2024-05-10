@@ -7,10 +7,10 @@ const Genres = ({ data }: any) => {
 
   return (
     <div
-      className={`flex flex-wrap justify-end items-center gap-1 absolute mr-4 bottom-12 ${
+      className={`flex flex-wrap justify-end items-center gap-1 absolute mr-4 bottom-5 ${
         path.startsWith("/movie") || path.startsWith("/tv")
-          ? " right-8"
-          : "right-4"
+          ? "right-8"
+          : "right-0"
       }`}
     >
       {data?.map((g: any) => {
@@ -21,7 +21,7 @@ const Genres = ({ data }: any) => {
         return (
           <div
             key={g}
-            className="bg-blue-500 px-1 py-1 text-[12px] rounded-md text-white whitespace-nowrap"
+            className="bg-blue-500 font-semibold  px-2 py-2 text-[14px] rounded-md text-white whitespace-nowrap"
           >
             {genre?.name}
           </div>

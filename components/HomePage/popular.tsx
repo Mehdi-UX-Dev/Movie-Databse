@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import Carousel from "../UI_components/carousel/Carousel";
-import SwitchTabs from "../UI_components/switchTabs/SwitchTabs";
+import Carousel from "../Carousel";
 import useFetch from "../../hooks/useFetch";
+import SwitchTabs from "../SwitchTabs";
 
 const Popular = () => {
   const [endpoint, setEndpoint] = useState("movie");
@@ -13,8 +13,8 @@ const Popular = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto mb-8 ">
-      <div className="flex justify-between items-center mb-4 px-8 lg:px-0">
+    <div className="max-w-7xl mx-auto my-16 ">
+      <div className="flex justify-between items-center mb-8 px-8 lg:px-0">
         <span className="text-white text-[1.5rem] ">What&apos;s Popular</span>
         <SwitchTabs data={["Movies", "TV Shows"]} onTabChange={onTabChange} />
       </div>

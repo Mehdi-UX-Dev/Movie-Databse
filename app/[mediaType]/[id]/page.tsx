@@ -1,15 +1,8 @@
 "use client";
 
-import DetailsBanner from "@/components/detail/DetailsBanner";
-import Cast from "@/components/detail/Cast";
-import VideosSection from "@/components/detail/VideosSection";
-import Similar from "@/components/detail/Similar";
-import Recommendation from "@/components/detail/Recommendation";
 import { useParams } from "next/navigation";
 import useFetch from "@/hooks/useFetch";
-import { useAppDispatch } from "@/redux/hooks";
-import { useEffect } from "react";
-import { fetchApiConfig } from "@/redux/homeSlice";
+import DetailsBanner from "@/components/DetailPage/DetailsBanner";
 
 function Detail() {
   const { mediaType, id } = useParams();

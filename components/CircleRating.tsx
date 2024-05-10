@@ -10,7 +10,7 @@ const CircleRating = ({ rating }: { rating: number }) => {
       className={cx(
         " rounded-[50%] p-1 text-2xl  font-bold  stroke-transparent  ",
         {
-          "absolute bottom-5 left-2 bg-white w-14 h-14": path.startsWith("/"),
+          "absolute bottom-2 left-2 bg-white w-16 h-16": path.startsWith("/"),
           "w-20 absolute -bottom-4":
             path.startsWith("/tv") || path.startsWith("/movie"),
         }
