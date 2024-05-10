@@ -1,9 +1,8 @@
 "use client";
+import Navbar from "@/components/UI_components/navbar";
 import "./globals.css";
 import { StoreProvider } from "@/redux";
-
-import Navbar from "@/components/UI_components/header/Header";
-import Footer from "@/components/UI_components/footer/Footer";
+import Footer from "@/components/UI_components/Footer";
 
 export default function RootLayout({
   children,

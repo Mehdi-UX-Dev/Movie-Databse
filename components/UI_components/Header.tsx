@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 import { VscChromeClose, VscThreeBars } from "react-icons/vsc";
 
-import logo from "../../../public/logo.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
