@@ -41,7 +41,8 @@ const MovieCard = ({
   return (
     url.poster && (
       <Link
-        className="cursor-pointer  space-y-4"
+        key={data.id}
+        className="cursor-pointer space-y-4"
         href={`/${data.media_type || mediaType}/${data.id}`}
       >
         <div className="relative aspect-[1/1.5]">

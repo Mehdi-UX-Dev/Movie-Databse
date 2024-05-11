@@ -45,6 +45,10 @@ const Explore = () => {
 
   const { data: genresData } = useFetch(`/genre/${mediaType}/list`);
 
+  /**
+   *
+   * @callback fetches the initial data
+   */
   const fetchInitialData = useCallback(() => {
     setLoading(true);
     fetchDataFromApi(`/discover/${mediaType}`, filters).then((res) => {
@@ -54,6 +58,10 @@ const Explore = () => {
     });
   }, [mediaType]);
 
+  /**
+   *
+   * triggers by Infinite Scroll component and fetches the next page
+   */
   const fetchNextPageData = () => {
     fetchDataFromApi(`/discover/${mediaType}?page=${pageNum}`, filters).then(
       (res) => {

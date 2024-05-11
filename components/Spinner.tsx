@@ -4,7 +4,7 @@ import loading from "@/public/Rolling.svg";
 
 const Spinner = () => {
   return (
-    <div className="flex items-center justify-center  bg-white ">
+    <div className="flex items-center justify-center">
       <Image src={loading} alt="loading" />;
     </div>
   );

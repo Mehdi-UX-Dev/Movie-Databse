@@ -1,3 +1,9 @@
+/**
+ *
+ *
+ * @returns {Promise}
+ */
+
 import { fetchDataFromApi } from "@/utils/api";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
@@ -15,9 +21,13 @@ const initialState: homeSliceTypes = {
   genres: {},
 };
 
+/**
+ * fetches the Api Configuration for images
+ *
+ *  @returns {Promise} A promise that resolves to an object containing the URLs for different image
+ */
 const fetchApiConfig = createAsyncThunk("fetch Data from api", async () => {
   const res = await fetchDataFromApi("/configuration");
-
   const url = {
     backdrop: res.images.secure_base_url + "original",
     poster: res.images.secure_base_url + "original",
@@ -26,6 +36,16 @@ const fetchApiConfig = createAsyncThunk("fetch Data from api", async () => {
 
   return url;
 });
+
+/**
+ * Fetch all genres in one place
+ *
+ * @returns an Array of genres id
+ *
+ * @example [1,44,89]
+ *
+ * @async
+ */
 
 const genresCall = createAsyncThunk("fetch genres", async () => {
   let promises: any = [];
@@ -67,7 +87,6 @@ export const homeSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const { getApiConfiguration, getGenres } = homeSlice.actions;
 
 export { fetchApiConfig, genresCall };
