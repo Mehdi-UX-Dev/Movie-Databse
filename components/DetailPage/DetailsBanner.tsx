@@ -12,23 +12,28 @@ import { fetchApiConfig, genresCall } from "@/redux/homeSlice";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import VideoPopup from "../VideoPopup";
 
+/**
+ *
+ * @param video
+ *
+ * @returns
+ */
+
 const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
   const { genres } = useAppSelector((state) => state.home);
+  const { url } = useAppSelector((state) => state.home);
 
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchApiConfig());
     dispatch(genresCall());
   }, [dispatch]);
+
   const [show, setShow] = useState(false);
   const [videoId, setVideoId] = useState(null);
-
   const { mediaType, id } = useParams();
   const { data, loading } = useFetch(`/${mediaType}/${id}`);
-
-  const { url } = useAppSelector((state) => state.home);
-
-  const _genres = data?.genres?.map((g: any) => g.id);
+  const mediaGenres = data?.genres?.map((g: any) => g.id);
 
   const director = crew?.filter((f: any) => f.job === "Director");
   const writer = crew?.filter(
@@ -90,7 +95,7 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                     <div
                       className={`flex flex-wrap justify-end items-center gap-1 absolute mr-4 `}
                     >
-                      {_genres?.map((g: any) => {
+                      {mediaGenres?.map((g: any) => {
                         const genre =
                           Array.isArray(genres) &&
                           genres?.find(
@@ -221,13 +226,28 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
           )}
         </>
       ) : (
-        <div className="pt-32 mx-auto  max-w-6xl w-full animate-pulse grid grid-cols-8">
-          <div className="col-span-3  w-64 h-96 bg-blue-950"></div>
-          <div className="col-span-5 space-y-8">
-            <div className="bg-blue-950 w-full h-10"></div>
-            <div className="bg-blue-950 w-full h-10"></div>
-            <div className="bg-blue-950 w-full h-10"></div>
-            <div className="bg-blue-950 w-full h-10"></div>
+        <div className=" mx-auto  max-w-7xl pt-40 animate-pulse ">
+          <div className=" flex gap-8 ">
+            <div className="w-64 h-[400px] rounded  bg-blue-950"></div>
+            <div className="flex flex-col grow gap-8">
+              <div className="bg-blue-950 h-10 w-full"></div>
+              <div className="bg-blue-950 h-10 w-full"></div>
+              <div className="bg-blue-950 h-10 w-full"></div>
+              <div className="bg-blue-950 w-full h-10"></div>
+              <div className="bg-blue-950 w-full h-10"></div>
+              <div className="bg-blue-950 w-full h-10"></div>
+            </div>
+          </div>
+          <div className="mt-20">
+            <div className="flex gap-8">
+              <div className="w-40 h-[200px] rounded-lg  bg-blue-950"></div>
+              <div className="w-40 h-[200px] rounded-lg  bg-blue-950"></div>
+              <div className="w-40 h-[200px] rounded-lg  bg-blue-950"></div>
+              <div className="w-40 h-[200px] rounded-lg  bg-blue-950"></div>
+              <div className="w-40 h-[200px] rounded-lg  bg-blue-950"></div>
+              <div className="w-40 h-[200px] rounded-lg  bg-blue-950"></div>
+              <div className="w-40 h-[200px] rounded-lg  bg-blue-950"></div>
+            </div>
           </div>
         </div>
       )}

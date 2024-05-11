@@ -112,7 +112,7 @@ const Explore = () => {
   };
 
   return (
-    <div className="pt-40 ">
+    <div className="pt-40">
       <div className="flex flex-wrap justify-center gap-2 lg:justify-between items-center max-w-7xl mx-auto ">
         <div className="text-white text-[1.5rem]">
           {mediaType === "tv" ? "Explore TV Shows" : "Explore Movies"}
