@@ -3,6 +3,8 @@
 import { useParams } from "next/navigation";
 import useFetch from "@/hooks/useFetch";
 import DetailsBanner from "@/components/DetailPage/DetailsBanner";
+import Cast from "@/components/DetailPage/Cast";
+import VideosSection from "@/components/DetailPage/VideosSection";
 
 function Detail() {
   const { mediaType, id } = useParams();
@@ -11,10 +13,10 @@ function Detail() {
     `/${mediaType}/${id}/credits`
   );
   return (
-    <div className="h-screen">
+    <div className="">
       <DetailsBanner video={data?.results?.[0]} crew={credits?.crew} />
-      {/* <Cast data={credits?.cast} loading={creditsLoading} /> */}
-      {/* <VideosSection data={data} loading={loading} /> */}
+      <Cast data={credits?.cast} loading={creditsLoading} />
+      <VideosSection data={data} loading={loading} />
       {/* <Similar mediaType={mediaType} id={id} /> */}
       {/* <Recommendation mediaType={mediaType} id={id} /> */}
     </div>

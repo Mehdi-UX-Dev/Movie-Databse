@@ -19,32 +19,30 @@ const Cast = ({ data, loading }: { data: any; loading: any }) => {
     );
   };
   return (
-    <div className=" max-w-6xl mx-auto  overflow-x-auto">
+    <div className="overflow-autob grid justify-center   ">
       <div className="text-white text-[1.5rem]">Top Cast</div>
       {!loading ? (
-        <div className="flex items-center gap-10">
-          {data?.slice(0, 7).map((item: any) => {
+        <div className="flex items-center flex-wrap gap-10">
+          {data?.slice(0, 6).map((item: any) => {
             let imgUrl =
               item.profile_path && url.profile
                 ? url.profile + item.profile_path
                 : avatar;
             return (
-              <div key={item.id} className="mb-5">
-                <div className="aspect-auto mt-3 mb-1">
+              <div key={item.id} className="">
+                <div className="aspect-auto  grow flex flex-col gap-4 items-center justify-center">
                   <Image
-                    className="rounded object-cover"
+                    className="rounded-full  w-40 h-40 object-cover"
                     src={imgUrl}
                     alt=""
                     width={100}
                     height={100}
                   />
                 </div>
-                <div className="text-white font-bold max-w-[10ch] truncate">
+                <p className="text-white text-center font-bold pt-2 pb-1 ">
                   {item.name}
-                </div>
-                <div className="text-gray-500 truncate max-w-[10ch]">
-                  {item.character}
-                </div>
+                </p>
+                <p className="text-gray-500 text-center  ">{item.character}</p>
               </div>
             );
           })}

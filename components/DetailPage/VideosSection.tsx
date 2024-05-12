@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import VideoPopup from "@/components/UI_components/videoPopup/VideoPopup";
 import { PlayIcon } from "./Playbtn";
 import Image from "next/image";
+import VideoPopup from "../VideoPopup";
 
 const VideosSection = ({ data, loading }: { data: any; loading: any }) => {
   const [show, setShow] = useState(false);
@@ -22,8 +22,8 @@ const VideosSection = ({ data, loading }: { data: any; loading: any }) => {
     <div className="videosSection">
       <div className="sectionHeading">Official Videos</div>
       {!loading ? (
-        <div className="videos">
-          {data?.results?.map((video: any) => (
+        <div className="flex">
+          {data?.results?.slice(0, 4).map((video: any) => (
             <div
               key={video.id}
               className="videoItem"

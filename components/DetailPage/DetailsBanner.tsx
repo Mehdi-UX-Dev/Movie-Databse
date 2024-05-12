@@ -53,23 +53,23 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
         <>
           {data && url?.backdrop && (
             <>
-              <div className="w-full h-full  absolute top-0 left-0 overflow-hidden opacity-75   ">
+              <div className="w-full h-[90%]  absolute top-0 left-0 opacity-75 ">
                 <Image
                   src={url.backdrop + data.backdrop_path}
                   alt=""
                   fill
                   className="object-cover object-center  "
                 />
-                <div className="bg-black bg-opacity-40 backdrop-blur-sm  w-full h-full absolute bottom-0 left-0 "></div>
+                <div className="bg-gradient-to-b from-[rgba(4,21,45,0.1)] to-[rgba(4,21,45,1)]    w-full h-full absolute bottom-0 left-0 "></div>
               </div>
-              <div className="pt-40  max-w-6xl mx-auto flex gap-8  ">
+              <div className="pt-40  justify-center  flex gap-8  ">
                 <div className="z-10">
                   {data.poster_path ? (
                     <Image
                       className="rounded-lg hidden md:block"
                       src={url?.backdrop + data.poster_path}
                       alt=""
-                      width={350}
+                      width={450}
                       height={450}
                     />
                   ) : (
@@ -114,7 +114,7 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                     </div>
                   </div>
                   <div className=" mt-16 flex items-center gap-8">
-                    <div className=" rounded-[50%] p-1 text-2xl bg-white  w-16 h-16 font-bold  stroke-transparent  ">
+                    <div className=" rounded-[50%] p-1 text-2xl bg-gray-950   w-24 h-24 font-bold  stroke-transparent  ">
                       <CircularProgressbar
                         value={data.vote_average.toFixed(1)}
                         maxValue={10}
@@ -128,6 +128,7 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                               : "green",
 
                           textSize: 32,
+                          textColor: "white",
                         })}
                       />
                     </div>
@@ -138,19 +139,21 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                         setVideoId(video.key);
                       }}
                     >
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-4 cursor-pointer">
                         <PlayIcon />
-                        <span className="text-white">Watch Trailer</span>
+                        <span className="text-white text-[1.5rem]">
+                          Watch Trailer
+                        </span>
                       </div>
                     </div>
                   </div>
 
                   <div className="max-w-3xl">
-                    <div className="text-[1.5rem] ">Overview</div>
-                    <div className="">{data.overview}</div>
+                    <div className="text-[2rem] ">Overview</div>
+                    <div className="text-[1.5rem]">{data.overview}</div>
                   </div>
 
-                  <div className="flex gap-4 border-b border-gray-600 pb-2 mt-4">
+                  <div className="flex gap-4 border-b border-gray-600 py-4 mt-4">
                     {data.status && (
                       <div className="">
                         <span className="font-bold">Status: </span>
@@ -174,7 +177,7 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                   </div>
 
                   {director?.length > 0 && (
-                    <div className=" border-b border-gray-600 pb-2">
+                    <div className=" border-b border-gray-600 py-4">
                       <span className="font-bold">Director: </span>
                       <span>
                         {director?.map((d: any, i: any) => (
@@ -188,7 +191,7 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                   )}
 
                   {writer?.length > 0 && (
-                    <div className="border-b border-gray-600 pb-2">
+                    <div className="border-b border-gray-600 py-4">
                       <span className="font-bold">Writer: </span>
                       <span>
                         {writer?.map((d: any, i: any) => (
@@ -202,7 +205,7 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                   )}
 
                   {data?.created_by?.length > 0 && (
-                    <div className=" border-b border-gray-600 pb-2">
+                    <div className=" border-b border-gray-600 py-4">
                       <span className="font-bold">Creator: </span>
                       <span>
                         {data?.created_by?.map((d: any, i: any) => (

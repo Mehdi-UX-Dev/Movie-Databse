@@ -6,12 +6,11 @@ export const PlayIcon = () => {
       xmlnsXlink="http://www.w3.org/1999/xlink"
       x="0px"
       y="0px"
-      width="70px"
-      height="70px"
+      width="90px"
+      height="90px"
       viewBox="0 0 213.7 213.7"
       enableBackground="new 0 0 213.7 213.7"
       xmlSpace="preserve"
-    
     >
       <polygon
         className="triangle"
