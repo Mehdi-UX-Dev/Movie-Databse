@@ -19,7 +19,7 @@ const Cast = ({ data, loading }: { data: any; loading: any }) => {
     );
   };
   return (
-    <div className="overflow-autob grid justify-center   ">
+    <div className="overflow-autob grid justify-center z-50   ">
       <div className="text-white text-[1.5rem]">Top Cast</div>
       {!loading ? (
         <div className="flex items-center flex-wrap gap-10">
@@ -32,7 +32,7 @@ const Cast = ({ data, loading }: { data: any; loading: any }) => {
               <div key={item.id} className="">
                 <div className="aspect-auto  grow flex flex-col gap-4 items-center justify-center">
                   <Image
-                    className="rounded-full  w-40 h-40 object-cover"
+                    className="rounded-full  w-40 h-40 object-cover "
                     src={imgUrl}
                     alt=""
                     width={100}
@@ -42,7 +42,7 @@ const Cast = ({ data, loading }: { data: any; loading: any }) => {
                 <p className="text-white text-center font-bold pt-2 pb-1 ">
                   {item.name}
                 </p>
-                <p className="text-gray-500 text-center  ">{item.character}</p>
+                <p className="text-gray-500 text-center">{item.character}</p>
               </div>
             );
           })}

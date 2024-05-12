@@ -19,10 +19,10 @@ const VideosSection = ({ data, loading }: { data: any; loading: any }) => {
   };
 
   return (
-    <div className="videosSection">
-      <div className="sectionHeading">Official Videos</div>
+    <div className="grid  justify-center relative">
+      <div className="text-[1.5rem] text-white ">Official Videos</div>
       {!loading ? (
-        <div className="flex">
+        <div className="flex gap-8">
           {data?.results?.slice(0, 4).map((video: any) => (
             <div
               key={video.id}
@@ -32,14 +32,17 @@ const VideosSection = ({ data, loading }: { data: any; loading: any }) => {
                 setShow(true);
               }}
             >
-              <div className="videoThumbnail">
+              <div className="relative">
                 <Image
                   src={`https://img.youtube.com/vi/${video.key}/mqdefault.jpg`}
                   width={200}
                   height={200}
                   alt=""
+                  className="w-72 h-40 rounded-lg"
                 />
-                <PlayIcon />
+                <div className="absolute top-[30%] right-[30%]">
+                  <PlayIcon />
+                </div>
               </div>
               <div className="videoTitle">{video.name}</div>
             </div>
