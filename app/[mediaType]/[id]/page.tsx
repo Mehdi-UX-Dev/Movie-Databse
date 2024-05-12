@@ -15,7 +15,7 @@ function Detail() {
     `/${mediaType}/${id}/credits`
   );
   return (
-    <div className="">
+    <div className="space-y-20 mb-10">
       <DetailsBanner video={data?.results?.[0]} crew={credits?.crew} />
       <Cast data={credits?.cast} loading={creditsLoading} />
       <VideosSection data={data} loading={loading} />

@@ -20,7 +20,7 @@ const VideosSection = ({ data, loading }: { data: any; loading: any }) => {
 
   return (
     <div className="grid  justify-center relative">
-      <div className="text-[1.5rem] text-white ">Official Videos</div>
+      <div className="text-[1.5rem] text-white pb-4">Official Videos</div>
       {!loading ? (
         <div className="flex gap-8">
           {data?.results?.slice(0, 4).map((video: any) => (
@@ -32,13 +32,13 @@ const VideosSection = ({ data, loading }: { data: any; loading: any }) => {
                 setShow(true);
               }}
             >
-              <div className="relative">
+              <div className="relative  cursor-pointer">
                 <Image
                   src={`https://img.youtube.com/vi/${video.key}/mqdefault.jpg`}
-                  width={200}
-                  height={200}
+                  width={250}
+                  height={250}
                   alt=""
-                  className="w-72 h-40 rounded-lg"
+                  className="w-80 h-40 rounded-lg"
                 />
                 <div className="absolute top-[30%] right-[30%]">
                   <PlayIcon />

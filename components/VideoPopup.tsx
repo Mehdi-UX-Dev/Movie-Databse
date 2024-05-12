@@ -19,9 +19,6 @@ const VideoPopup = ({
     setShow(false);
     setVideoId(null);
   };
-  {
-    console.log(videoId);
-  }
 
   return (
     <div

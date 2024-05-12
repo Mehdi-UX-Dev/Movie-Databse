@@ -14,9 +14,9 @@ import VideoPopup from "../VideoPopup";
 
 /**
  *
- * @param video
+ * @param video The Video data
+ * @param crew  The cast data
  *
- * @returns
  */
 
 const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
@@ -74,7 +74,7 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                     />
                   ) : (
                     <Image
-                      alt=""
+                      alt="Image"
                       className="posterImg"
                       src={PosterFallback}
                       width={450}
@@ -83,37 +83,33 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                   )}
                 </div>
                 <div className="text-white z-10">
-                  <div className="text-[2rem] font-bold ">
+                  <h1 className="text-[3rem] font-bold ">
                     {`${data.name || data.title} (${dayjs(
                       data?.release_date
                     ).format("YYYY")})`}
-                  </div>
-                  <div className="text-[1.25rem] text-gray-400 ">
+                  </h1>
+                  <p className="text-[1.5rem] text-gray-400 pb-4 ">
                     {data.tagline}
-                  </div>
-                  <div id="find" className="mt-2">
-                    <div
-                      className={`flex flex-wrap justify-end items-center gap-1 absolute mr-4 `}
-                    >
-                      {mediaGenres?.map((g: any) => {
-                        const genre =
-                          Array.isArray(genres) &&
-                          genres?.find(
-                            (obj: { id: number; name: string }) => obj.id === g
-                          );
-
-                        return (
-                          <div
-                            key={g}
-                            className="bg-blue-500 px-1 py-1 text-[12px] rounded-md text-white whitespace-nowrap"
-                          >
-                            {genre?.name}
-                          </div>
+                  </p>
+                  <div className="flex flex-wrap  items-center   gap-4">
+                    {mediaGenres?.map((g: any) => {
+                      const genre =
+                        Array.isArray(genres) &&
+                        genres?.find(
+                          (obj: { id: number; name: string }) => obj.id === g
                         );
-                      })}
-                    </div>
+
+                      return (
+                        <div
+                          key={g}
+                          className="bg-blue-500 px-4 py-2  rounded-md text-white whitespace-nowrap"
+                        >
+                          {genre?.name}
+                        </div>
+                      );
+                    })}
                   </div>
-                  <div className=" mt-16 flex items-center gap-8">
+                  <div className=" flex items-center gap-8 mt-8">
                     <div className=" rounded-[50%] p-1 text-2xl bg-gray-950   w-24 h-24 font-bold  stroke-transparent  ">
                       <CircularProgressbar
                         value={data.vote_average.toFixed(1)}
@@ -148,36 +144,42 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                     </div>
                   </div>
 
-                  <div className="max-w-3xl">
-                    <div className="text-[2rem] ">Overview</div>
+                  <div className="max-w-3xl mt-8">
+                    <div className="text-[2.5rem] pb-2">Overview</div>
                     <div className="text-[1.5rem]">{data.overview}</div>
                   </div>
 
-                  <div className="flex gap-4 border-b border-gray-600 py-4 mt-4">
+                  <div className="flex gap-4 border-b text-[1.5rem] border-gray-600 py-4 mt-4">
                     {data.status && (
                       <div className="">
-                        <span className="font-bold">Status: </span>
+                        <span className="font-bold ">Status: </span>
                         <span>{data.status}</span>
                       </div>
                     )}
                     {data.release_date && (
-                      <div className="infoItem">
-                        <span className="font-bold ">Release Date: </span>
-                        <span>
+                      <div className="">
+                        <span className="font-bold text-[1.5rem] ">
+                          Release Date:{" "}
+                        </span>
+                        <span className="text-[1.5rem]">
                           {dayjs(data.release_date).format("MMM D, YYYY")}
                         </span>
                       </div>
                     )}
                     {data.runtime && (
-                      <div className="infoItem">
-                        <span className="font-bold">Runtime: </span>
-                        <span>{toHoursAndMinutes(data.runtime)}</span>
+                      <div className="">
+                        <span className="font-bold text-[1.5rem]">
+                          Runtime:{" "}
+                        </span>
+                        <span className="text-[1.5rem]">
+                          {toHoursAndMinutes(data.runtime)}
+                        </span>
                       </div>
                     )}
                   </div>
 
                   {director?.length > 0 && (
-                    <div className=" border-b border-gray-600 py-4">
+                    <div className=" text-[1.5rem] border-b border-gray-600 py-4">
                       <span className="font-bold">Director: </span>
                       <span>
                         {director?.map((d: any, i: any) => (
@@ -191,7 +193,7 @@ const DetailsBanner = ({ video, crew }: { video: any; crew: any }) => {
                   )}
 
                   {writer?.length > 0 && (
-                    <div className="border-b border-gray-600 py-4">
+                    <div className="border-b border-gray-600 py-4 text-[1.5rem]">
                       <span className="font-bold">Writer: </span>
                       <span>
                         {writer?.map((d: any, i: any) => (
