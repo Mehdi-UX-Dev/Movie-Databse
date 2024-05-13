@@ -8,6 +8,7 @@ import Link from "next/link";
 import { PiTelevisionBold } from "react-icons/pi";
 import { RiMovie2Line } from "react-icons/ri";
 import { FaX } from "react-icons/fa6";
+import logo from "@/public/logo.png";
 
 const Navbar = () => {
   const [query, setQuery] = useState("");
