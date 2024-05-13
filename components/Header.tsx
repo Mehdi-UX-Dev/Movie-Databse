@@ -30,7 +30,6 @@ const Navbar = () => {
       push(`/search/${query}`);
     }
   };
-
   return (
     <nav
       className={`px-4 fixed z-10 bg-[#0A325C] bg-opacity-50  h-24  backdrop-blur-sm w-full`}
